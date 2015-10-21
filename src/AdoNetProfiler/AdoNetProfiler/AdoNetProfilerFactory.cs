@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Threading;
 
 namespace AdoNetProfiler
 {
@@ -10,6 +11,9 @@ namespace AdoNetProfiler
     {
         // ConstructorInfo is faster than Func<IProfiler> when invoking.
         private static ConstructorInfo _constructor;
+
+        private static bool _initialized = false;
+        private static readonly ReaderWriterLockSlim _readerWriterLockSlim = new ReaderWriterLockSlim();
 
         /// <summary>
         /// Initialize the setting for profiling of database accessing with ADO.NET.
@@ -23,17 +27,31 @@ namespace AdoNetProfiler
             if (profilerType != typeof(IProfiler))
                 throw new ArgumentException($"The type must be {typeof(IProfiler).FullName}.", nameof(profilerType));
 
-            var constructor = profilerType.GetConstructor(Type.EmptyTypes);
+            _readerWriterLockSlim.ExecuteWithReadLock(() =>
+            {
+                if (_initialized)
+                    throw new InvalidOperationException("This factory class has already initialized.");
 
-            if (constructor == null)
-                throw new InvalidOperationException("There is no default constructor. The profiler must have it.");
+                var constructor = profilerType.GetConstructor(Type.EmptyTypes);
 
-            _constructor = constructor;
+                if (constructor == null)
+                    throw new InvalidOperationException("There is no default constructor. The profiler must have it.");
+
+                _constructor = constructor;
+
+                _initialized = true;
+            });
         }
 
         public static IProfiler GetProfiler()
         {
-            return (IProfiler)_constructor.Invoke(null);
+            return _readerWriterLockSlim.ExecuteWithWriteLock(() =>
+            {
+                if (!_initialized)
+                    throw new InvalidOperationException("This factory class has not initialized yet.");
+
+                return (IProfiler)_constructor.Invoke(null);
+            });
         }
     }
 }
