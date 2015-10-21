@@ -45,6 +45,7 @@
     <Compile Include="ProfiledDbCommand.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ProfiledDbConnection.cs" />
     <Compile Include="ProfiledDbDataReader.cs" />
     <Compile Include="ProfiledDbTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
