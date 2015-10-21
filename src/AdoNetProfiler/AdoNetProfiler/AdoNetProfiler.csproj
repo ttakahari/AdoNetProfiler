@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdoNetProfilerFactory.cs" />
     <Compile Include="IProfiler.cs" />
     <Compile Include="ProfiledDbCommand.cs">
       <SubType>Code</SubType>
