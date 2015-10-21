@@ -109,7 +109,7 @@ namespace AdoNetProfiler
             }
             finally
             {
-                _profiler.OnCommandFinish(this, reader);
+                _profiler.OnCommandFinish(this, true);
             }
         }
 
@@ -131,7 +131,7 @@ namespace AdoNetProfiler
             }
             finally
             {
-                _profiler.OnCommandFinish(this, null);
+                _profiler.OnCommandFinish(this, false);
             }
         }
 
@@ -153,7 +153,7 @@ namespace AdoNetProfiler
             }
             finally
             {
-                _profiler.OnCommandFinish(this, null);
+                _profiler.OnCommandFinish(this, false);
             }
         }
 
