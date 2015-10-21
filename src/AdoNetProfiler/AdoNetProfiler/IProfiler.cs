@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Data.Common;
-using System.Threading.Tasks;
 
 namespace AdoNetProfiler
 {
@@ -14,44 +12,56 @@ namespace AdoNetProfiler
         /// Get the profiler is enabled or not.
         /// </summary>
         bool IsEnabled { get; }
+        
+        /// <summary>
+        /// Execute before the connection open.
+        /// </summary>
+        void OnOpening();
 
         /// <summary>
-        /// Execute when the connection opens.
+        /// Execute after the connection open.
         /// </summary>
-        /// <param name="connectionOpenAction">The action that means the connection opens.</param>
-        void OnConnectionOpen(Action connectionOpenAction);
+        void OnOpened();
 
         /// <summary>
-        /// Execute when the connection opens asynchronously.
+        /// Execute before the connection close.
         /// </summary>
-        /// <param name="connectionOpenAsyncAction">The action that means the connection opens asynchronously.</param>
-        /// <returns>Task the connection opens.</returns>
-        Task OnConnectionOpenAsync(Func<Task> connectionOpenAsyncAction);
+        void OnClosing();
 
         /// <summary>
-        /// Execute when the connection closes.
+        /// Execute after the connection close.
         /// </summary>
-        /// <param name="connectionCloseAction">The action that means the connection closes.</param>
-        void OnConnectionClose(Action connectionCloseAction);
+        void OnClosed();
 
         /// <summary>
-        /// Execute when the transaction begins.
+        /// Execute before the connection creates the transaction.
         /// </summary>
-        /// <param name="transactionBeginAction">The action that means the connection creates the transaction.</param>
-        /// <returns>Created transaction.</returns>
-        DbTransaction OnTransactionBegin(Func<DbTransaction> transactionBeginAction);
+        void OnStartingTransaction();
 
         /// <summary>
-        /// Execute when the transaction commits.
+        /// Execute after the connection creates the transaction.
         /// </summary>
-        /// <param name="transactionCommitAction">The action that means the transaction commits.</param>
-        void OnTransactionCommit(Action transactionCommitAction);
+        void OnStartedTransaction();
 
         /// <summary>
-        /// Execute when the transaction rollbacks.
+        /// Execute before the transaction commits.
         /// </summary>
-        /// <param name="transactionRollbackAction">The action that means the transaction rollbacks.</param>
-        void OnTransactionRollback(Action transactionRollbackAction);
+        void OnCommitting();
+
+        /// <summary>
+        /// Execute after the transaction commits.
+        /// </summary>
+        void OnCommitted();
+
+        /// <summary>
+        /// Execute before the transaction rollbacks.
+        /// </summary>
+        void OnRollbacking();
+
+        /// <summary>
+        /// Execute after the transaction rollbacks.
+        /// </summary>
+        void OnRollbacked();
         
         /// <summary>
         /// Execute brefore the command executes.

@@ -52,8 +52,12 @@ namespace AdoNetProfiler
                 _connection.Close();
                 return;
             }
+            
+            _profiler.OnClosing();
 
-            _profiler.OnConnectionClose(() => _connection.Close());
+            _connection.Close();
+
+            _profiler.OnClosed();
         }
         
         public override DataTable GetSchema()
@@ -78,8 +82,12 @@ namespace AdoNetProfiler
                 _connection.Open();
                 return;
             }
+            
+            _profiler.OnOpening();
 
-            _profiler.OnConnectionClose(() => _connection.Open());
+            _connection.Open();
+
+            _profiler.OnOpened();
         }
         
         protected override DbTransaction BeginDbTransaction(IsolationLevel isolationLevel)
@@ -87,7 +95,11 @@ namespace AdoNetProfiler
             if (_profiler == null || !_profiler.IsEnabled)
                 return _connection.BeginTransaction(isolationLevel);
 
-            var transaction = _profiler.OnTransactionBegin(() => _connection.BeginTransaction(isolationLevel));
+            _profiler.OnStartingTransaction();
+
+            var transaction = _connection.BeginTransaction(isolationLevel);
+
+            _profiler.OnStartedTransaction();
 
             return new ProfiledDbTransaction(transaction, _connection, _profiler);
         }

@@ -36,8 +36,12 @@ namespace AdoNetProfiler
                 _transaction.Commit();
                 return;
             }
+            
+            _profiler.OnCommitting();
 
-            _profiler.OnTransactionCommit(() => _transaction.Commit());
+            _transaction.Commit();
+
+            _profiler.OnCommitted();
         }
 
         public override void Rollback()
@@ -47,8 +51,12 @@ namespace AdoNetProfiler
                 _transaction.Rollback();
                 return;
             }
+            
+            _profiler.OnRollbacking();
 
-            _profiler.OnTransactionRollback(() => _transaction.Rollback());
+            _transaction.Rollback();
+
+            _profiler.OnRollbacked();
         }
 
         protected override void Dispose(bool disposing)
