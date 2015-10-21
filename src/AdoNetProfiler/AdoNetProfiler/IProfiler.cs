@@ -32,7 +32,7 @@ namespace AdoNetProfiler
         /// Execute when the connection closes.
         /// </summary>
         /// <param name="connectionCloseAction">The action that means the connection closes.</param>
-        void OnClose(Action connectionCloseAction);
+        void OnConnectionClose(Action connectionCloseAction);
 
         /// <summary>
         /// Execute when the transaction begins.
