@@ -43,7 +43,7 @@ namespace AdoNetProfiler
             });
         }
 
-        public static IProfiler GetProfiler()
+        internal static IProfiler GetProfiler()
         {
             return _readerWriterLockSlim.ExecuteWithWriteLock(() =>
             {

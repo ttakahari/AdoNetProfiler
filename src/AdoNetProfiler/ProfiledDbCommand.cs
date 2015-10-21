@@ -6,7 +6,7 @@ using System.Data.Common;
 namespace AdoNetProfiler
 {
     [DesignerCategory("")]
-    public class ProfiledDbCommand : DbCommand
+    internal class ProfiledDbCommand : DbCommand
     {
         private DbCommand _command;
         private DbConnection _connection;
@@ -73,9 +73,9 @@ namespace AdoNetProfiler
             set { _command.UpdatedRowSource = value; }
         }
 
-        public DbCommand InternalCommand => _command;
+        internal DbCommand InternalCommand => _command;
 
-        public ProfiledDbCommand(DbCommand command, DbConnection connection, IProfiler profiler)
+        internal ProfiledDbCommand(DbCommand command, DbConnection connection, IProfiler profiler)
         {
             if (command == null)
                 throw new ArgumentNullException(nameof(command));

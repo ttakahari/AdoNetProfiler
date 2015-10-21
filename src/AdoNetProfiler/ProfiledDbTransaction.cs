@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace AdoNetProfiler
 {
-    public class ProfiledDbTransaction : DbTransaction
+    internal class ProfiledDbTransaction : DbTransaction
     {
         private DbConnection _connection;
         private DbTransaction _transaction;
@@ -16,7 +16,7 @@ namespace AdoNetProfiler
 
         internal DbTransaction WrappedDbTransaction => _transaction;
 
-        public ProfiledDbTransaction(DbTransaction transaction, DbConnection connection, IProfiler profiler)
+        internal ProfiledDbTransaction(DbTransaction transaction, DbConnection connection, IProfiler profiler)
         {
             if (transaction == null)
                 throw new ArgumentNullException(nameof(transaction));

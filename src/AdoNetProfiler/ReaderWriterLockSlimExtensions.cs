@@ -3,9 +3,9 @@ using System.Threading;
 
 namespace AdoNetProfiler
 {
-    public static class ReaderWriterLockSlimExtensions
+    internal static class ReaderWriterLockSlimExtensions
     {
-        public static void ExecuteWithReadLock(this ReaderWriterLockSlim readerWriterLockSlim, Action action)
+        internal static void ExecuteWithReadLock(this ReaderWriterLockSlim readerWriterLockSlim, Action action)
         {
             readerWriterLockSlim.EnterReadLock();
 
@@ -14,7 +14,7 @@ namespace AdoNetProfiler
             readerWriterLockSlim.ExitReadLock();
         }
 
-        public static T ExecuteWithReadLock<T>(this ReaderWriterLockSlim readerWriterLockSlim, Func<T> action)
+        internal static T ExecuteWithReadLock<T>(this ReaderWriterLockSlim readerWriterLockSlim, Func<T> action)
         {
             readerWriterLockSlim.EnterReadLock();
 
@@ -25,7 +25,7 @@ namespace AdoNetProfiler
             return result;
         }
 
-        public static void ExecuteWithWriteLock(this ReaderWriterLockSlim readerWriterLockSlim, Action action)
+        internal static void ExecuteWithWriteLock(this ReaderWriterLockSlim readerWriterLockSlim, Action action)
         {
             readerWriterLockSlim.EnterWriteLock();
 
@@ -34,7 +34,7 @@ namespace AdoNetProfiler
             readerWriterLockSlim.ExitWriteLock();
         }
 
-        public static T ExecuteWithWriteLock<T>(this ReaderWriterLockSlim readerWriterLockSlim, Func<T> action)
+        internal static T ExecuteWithWriteLock<T>(this ReaderWriterLockSlim readerWriterLockSlim, Func<T> action)
         {
             readerWriterLockSlim.EnterWriteLock();
 
