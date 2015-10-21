@@ -71,7 +71,7 @@ namespace AdoNetProfiler
             set { _command.UpdatedRowSource = value; }
         }
 
-        internal DbCommand InternalCommand => _command;
+        public DbCommand WrappedCommand => _command;
 
         internal AdoNetProfilerDbCommand(DbCommand command, DbConnection connection, IAdoNetProfiler profiler)
         {

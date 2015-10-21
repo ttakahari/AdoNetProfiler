@@ -41,13 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdoNetProfilerFactory.cs" />
-    <Compile Include="IProfiler.cs" />
-    <Compile Include="ProfiledDbCommand.cs">
+    <Compile Include="IAdoNetProfiler.cs" />
+    <Compile Include="AdoNetProfilerDbCommand.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ProfiledDbConnection.cs" />
-    <Compile Include="ProfiledDbDataReader.cs" />
-    <Compile Include="ProfiledDbTransaction.cs" />
+    <Compile Include="AdoNetProfilerDbConnection.cs" />
+    <Compile Include="AdoNetProfilerDbDataReader.cs" />
+    <Compile Include="AdoNetProfilerDbTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReaderWriterLockSlimExtensions.cs" />
   </ItemGroup>
