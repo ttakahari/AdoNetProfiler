@@ -65,5 +65,12 @@ namespace AdoNetProfiler
         /// <param name="command">The executed command.</param>
         /// <param name="reader">The stream from data source.</param>
         void OnCommandFinish(IDbCommand command, DbDataReader reader);
+
+        /// <summary>
+        /// Execute when the error occurs while the command executing.
+        /// </summary>
+        /// <param name="command">The executing command.</param>
+        /// <param name="exception">The occurred error.</param>
+        void OnCommandError(IDbCommand command, Exception exception);
     }
 }
