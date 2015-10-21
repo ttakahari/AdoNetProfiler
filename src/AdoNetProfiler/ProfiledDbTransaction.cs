@@ -14,7 +14,7 @@ namespace AdoNetProfiler
 
         public override IsolationLevel IsolationLevel => _transaction.IsolationLevel;
 
-        internal DbTransaction WrappedDbTransaction => _transaction;
+        public DbTransaction WrappedTransaction => _transaction;
 
         internal ProfiledDbTransaction(DbTransaction transaction, DbConnection connection, IProfiler profiler)
         {

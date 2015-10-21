@@ -34,15 +34,14 @@ namespace AdoNetProfiler
         protected override DbConnection DbConnection
         {
             get { return _connection; }
-            set { _connection = value; }
-            //set
-            //{
-            //    _connection = value;
-            //    var profiledDbConnection = value as ProfiledDbConnection;
-            //    _command.Connection = (profiledDbConnection == null)
-            //        ? value
-            //        : profiledDbConnection.WrappedDbConnection;
-            //}
+            set
+            {
+                _connection = value;
+                var profiledDbConnection = value as ProfiledDbConnection;
+                _command.Connection = (profiledDbConnection == null)
+                    ? value
+                    : profiledDbConnection.WrappedConnection;
+            }
         }
 
         protected override DbParameterCollection DbParameterCollection => _command.Parameters;
@@ -50,15 +49,14 @@ namespace AdoNetProfiler
         protected override DbTransaction DbTransaction
         {
             get { return _transaction; }
-            set { _transaction = value; }
-            //set
-            //{
-            //    _transaction = value;
-            //    var profiledDbTransaction = value as ProfiledDbTransaction;
-            //    _command.Transaction = (profiledDbTransaction == null)
-            //        ? value
-            //        : profiledDbTransaction.WrappedDbTransaction;
-            //}
+            set
+            {
+                _transaction = value;
+                var profiledDbTransaction = value as ProfiledDbTransaction;
+                _command.Transaction = (profiledDbTransaction == null)
+                    ? value
+                    : profiledDbTransaction.WrappedTransaction;
+            }
         }
 
         public override bool DesignTimeVisible
@@ -95,12 +93,11 @@ namespace AdoNetProfiler
 
             try
             {
-                //var dbReader = _command.ExecuteReader(behavior);
+                var dbReader = _command.ExecuteReader(behavior);
 
-                //reader = new ProfiledDbDataReader(dbReader, _profiler);
+                reader = new ProfiledDbDataReader(dbReader, _profiler);
 
-                //return reader;
-                return _command.ExecuteReader(behavior);
+                return reader;
             }
             catch (Exception ex)
             {

@@ -29,6 +29,8 @@ namespace AdoNetProfiler
 
         protected override bool CanRaiseEvents => true;
 
+        public DbConnection WrappedConnection => _connection;
+
         public ProfiledDbConnection(DbConnection connection)
         {
             if (connection == null)
