@@ -7,7 +7,7 @@ namespace AdoNetProfiler
     /// <summary>
     /// The interface that defines methods profiling of database accesses.
     /// </summary>
-    public interface IProfiler
+    public interface IAdoNetProfiler
     {
         /// <summary>
         /// Get the profiler is enabled or not.

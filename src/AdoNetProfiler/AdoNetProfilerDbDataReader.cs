@@ -5,10 +5,10 @@ using System.Data.Common;
 
 namespace AdoNetProfiler
 {
-    internal class ProfiledDbDataReader : DbDataReader
+    internal class AdoNetProfilerDbDataReader : DbDataReader
     {
         private readonly DbDataReader _reader;
-        private readonly IProfiler _profiler;
+        private readonly IAdoNetProfiler _profiler;
 
         public override int Depth => _reader.Depth;
 
@@ -24,7 +24,7 @@ namespace AdoNetProfiler
 
         public override object this[int ordinal] => _reader[ordinal];
         
-        internal ProfiledDbDataReader(DbDataReader reader, IProfiler profiler)
+        internal AdoNetProfilerDbDataReader(DbDataReader reader, IAdoNetProfiler profiler)
         {
             _reader   = reader;
             _profiler = profiler;

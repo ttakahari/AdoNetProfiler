@@ -5,7 +5,7 @@ using System.Threading;
 namespace AdoNetProfiler
 {
     /// <summary>
-    /// The factory to create the object of <see cref="IProfiler"/>.
+    /// The factory to create the object of <see cref="IAdoNetProfiler"/>.
     /// </summary>
     public class AdoNetProfilerFactory
     {
@@ -18,14 +18,14 @@ namespace AdoNetProfiler
         /// <summary>
         /// Initialize the setting for profiling of database accessing with ADO.NET.
         /// </summary>
-        /// <param name="profilerType">The type to implement <see cref="IProfiler"/>.</param>
+        /// <param name="profilerType">The type to implement <see cref="IAdoNetProfiler"/>.</param>
         public static void Initialize(Type profilerType)
         {
             if (profilerType == null)
                 throw new ArgumentNullException(nameof(profilerType));
 
-            if (profilerType != typeof(IProfiler))
-                throw new ArgumentException($"The type must be {typeof(IProfiler).FullName}.", nameof(profilerType));
+            if (profilerType != typeof(IAdoNetProfiler))
+                throw new ArgumentException($"The type must be {typeof(IAdoNetProfiler).FullName}.", nameof(profilerType));
 
             _readerWriterLockSlim.ExecuteWithReadLock(() =>
             {
@@ -43,14 +43,14 @@ namespace AdoNetProfiler
             });
         }
 
-        internal static IProfiler GetProfiler()
+        internal static IAdoNetProfiler GetProfiler()
         {
             return _readerWriterLockSlim.ExecuteWithWriteLock(() =>
             {
                 if (!_initialized)
                     throw new InvalidOperationException("This factory class has not initialized yet.");
 
-                return (IProfiler)_constructor.Invoke(null);
+                return (IAdoNetProfiler)_constructor.Invoke(null);
             });
         }
     }

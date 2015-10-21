@@ -6,10 +6,10 @@ using System.Data.Common;
 namespace AdoNetProfiler
 {
     [DesignerCategory("")]
-    public class ProfiledDbConnection : DbConnection
+    public class AdoNetProfilerDbConnection : DbConnection
     {
         private DbConnection _connection;
-        private IProfiler _profiler;
+        private IAdoNetProfiler _profiler;
         
         public override string ConnectionString
         {
@@ -31,7 +31,7 @@ namespace AdoNetProfiler
 
         public DbConnection WrappedConnection => _connection;
 
-        public ProfiledDbConnection(DbConnection connection)
+        public AdoNetProfilerDbConnection(DbConnection connection)
         {
             if (connection == null)
                 throw new ArgumentNullException(nameof(connection));
@@ -103,12 +103,12 @@ namespace AdoNetProfiler
 
             _profiler.OnStartedTransaction(transaction);
 
-            return new ProfiledDbTransaction(transaction, _connection, _profiler);
+            return new AdoNetProfilerDbTransaction(transaction, _connection, _profiler);
         }
         
         protected override DbCommand CreateDbCommand()
         {
-            return new ProfiledDbCommand(_connection.CreateCommand(), this, _profiler);
+            return new AdoNetProfilerDbCommand(_connection.CreateCommand(), this, _profiler);
         }
 
         protected override void Dispose(bool disposing)

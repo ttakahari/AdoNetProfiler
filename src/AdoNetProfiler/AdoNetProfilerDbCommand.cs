@@ -6,12 +6,12 @@ using System.Data.Common;
 namespace AdoNetProfiler
 {
     [DesignerCategory("")]
-    internal class ProfiledDbCommand : DbCommand
+    internal class AdoNetProfilerDbCommand : DbCommand
     {
         private DbCommand _command;
         private DbConnection _connection;
         private DbTransaction _transaction;
-        private readonly IProfiler _profiler;
+        private readonly IAdoNetProfiler _profiler;
 
         public override string CommandText
         {
@@ -37,7 +37,7 @@ namespace AdoNetProfiler
             set
             {
                 _connection = value;
-                var profiledDbConnection = value as ProfiledDbConnection;
+                var profiledDbConnection = value as AdoNetProfilerDbConnection;
                 _command.Connection = (profiledDbConnection == null)
                     ? value
                     : profiledDbConnection.WrappedConnection;
@@ -52,7 +52,7 @@ namespace AdoNetProfiler
             set
             {
                 _transaction = value;
-                var profiledDbTransaction = value as ProfiledDbTransaction;
+                var profiledDbTransaction = value as AdoNetProfilerDbTransaction;
                 _command.Transaction = (profiledDbTransaction == null)
                     ? value
                     : profiledDbTransaction.WrappedTransaction;
@@ -73,7 +73,7 @@ namespace AdoNetProfiler
 
         internal DbCommand InternalCommand => _command;
 
-        internal ProfiledDbCommand(DbCommand command, DbConnection connection, IProfiler profiler)
+        internal AdoNetProfilerDbCommand(DbCommand command, DbConnection connection, IAdoNetProfiler profiler)
         {
             if (command == null)
                 throw new ArgumentNullException(nameof(command));
@@ -95,7 +95,7 @@ namespace AdoNetProfiler
             {
                 var dbReader = _command.ExecuteReader(behavior);
 
-                reader = new ProfiledDbDataReader(dbReader, _profiler);
+                reader = new AdoNetProfilerDbDataReader(dbReader, _profiler);
 
                 return reader;
             }
