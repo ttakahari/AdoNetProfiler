@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.Common;
 
 namespace AdoNetProfiler
 {
@@ -16,52 +17,62 @@ namespace AdoNetProfiler
         /// <summary>
         /// Execute before the connection open.
         /// </summary>
-        void OnOpening();
+        /// <param name="connection">The current connection.</param>
+        void OnOpening(DbConnection connection);
 
         /// <summary>
         /// Execute after the connection open.
         /// </summary>
-        void OnOpened();
+        /// <param name="connection">The current connection.</param>
+        void OnOpened(DbConnection connection);
 
         /// <summary>
         /// Execute before the connection close.
         /// </summary>
-        void OnClosing();
+        /// <param name="connection">The current connection.</param>
+        void OnClosing(DbConnection connection);
 
         /// <summary>
         /// Execute after the connection close.
         /// </summary>
-        void OnClosed();
+        /// <param name="connection">The current connection.</param>
+        void OnClosed(DbConnection connection);
 
         /// <summary>
         /// Execute before the connection creates the transaction.
         /// </summary>
-        void OnStartingTransaction();
+        /// <param name="connection">The current connection.</param>
+        void OnStartingTransaction(DbConnection connection);
 
         /// <summary>
         /// Execute after the connection creates the transaction.
         /// </summary>
-        void OnStartedTransaction();
+        /// <param name="transaction">The created transaction.</param>
+        void OnStartedTransaction(DbTransaction transaction);
 
         /// <summary>
         /// Execute before the transaction commits.
         /// </summary>
-        void OnCommitting();
+        /// <param name="transaction">The current transaction.</param>
+        void OnCommitting(DbTransaction transaction);
 
         /// <summary>
         /// Execute after the transaction commits.
         /// </summary>
-        void OnCommitted();
+        /// <param name="connection">The current connection.</param>
+        void OnCommitted(DbConnection connection);
 
         /// <summary>
         /// Execute before the transaction rollbacks.
         /// </summary>
-        void OnRollbacking();
+        /// <param name="transaction">The current transaction.</param>
+        void OnRollbacking(DbTransaction transaction);
 
         /// <summary>
         /// Execute after the transaction rollbacks.
         /// </summary>
-        void OnRollbacked();
+        /// <param name="connection">The current connection.</param>
+        void OnRollbacked(DbConnection connection);
         
         /// <summary>
         /// Execute brefore the command executes.
