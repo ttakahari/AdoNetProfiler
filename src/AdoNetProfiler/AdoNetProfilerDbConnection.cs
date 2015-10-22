@@ -32,14 +32,16 @@ namespace AdoNetProfiler
         public DbConnection WrappedConnection => _connection;
 
         public AdoNetProfilerDbConnection(DbConnection connection)
+            : this(connection, AdoNetProfilerFactory.GetProfiler()) { }
+
+        public AdoNetProfilerDbConnection(DbConnection connection, IAdoNetProfiler profiler)
         {
             if (connection == null)
                 throw new ArgumentNullException(nameof(connection));
 
-            _connection = connection;
-            _profiler   = AdoNetProfilerFactory.GetProfiler();
-
-            _connection.StateChange += StateChangeHandler;    
+            _connection              = connection;
+            _profiler                = profiler;
+            _connection.StateChange += StateChangeHandler;
         }
         
         public override void ChangeDatabase(string databaseName)
