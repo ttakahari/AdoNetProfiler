@@ -37,10 +37,10 @@ namespace AdoNetProfiler
             set
             {
                 _connection = value;
-                var profiledDbConnection = value as AdoNetProfilerDbConnection;
-                _command.Connection = (profiledDbConnection == null)
+                var adoNetProfilerDbConnection = value as AdoNetProfilerDbConnection;
+                _command.Connection = (adoNetProfilerDbConnection == null)
                     ? value
-                    : profiledDbConnection.WrappedConnection;
+                    : adoNetProfilerDbConnection.WrappedConnection;
             }
         }
 
@@ -52,10 +52,10 @@ namespace AdoNetProfiler
             set
             {
                 _transaction = value;
-                var profiledDbTransaction = value as AdoNetProfilerDbTransaction;
-                _command.Transaction = (profiledDbTransaction == null)
+                var adoNetProfilerDbTransaction = value as AdoNetProfilerDbTransaction;
+                _command.Transaction = (adoNetProfilerDbTransaction == null)
                     ? value
-                    : profiledDbTransaction.WrappedTransaction;
+                    : adoNetProfilerDbTransaction.WrappedTransaction;
             }
         }
 
@@ -88,16 +88,13 @@ namespace AdoNetProfiler
             if (_profiler == null || !_profiler.IsEnabled)
                 return _command.ExecuteReader(behavior);
 
-            DbDataReader reader = null;
             _profiler.OnCommandStart(this);
 
             try
             {
                 var dbReader = _command.ExecuteReader(behavior);
-
-                reader = new AdoNetProfilerDbDataReader(dbReader, _profiler);
-
-                return reader;
+                
+                return new AdoNetProfilerDbDataReader(dbReader, _profiler);
             }
             catch (Exception ex)
             {
