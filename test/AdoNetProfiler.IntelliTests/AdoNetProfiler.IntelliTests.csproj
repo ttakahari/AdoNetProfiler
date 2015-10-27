@@ -67,7 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AdoNetProfiler\AdoNetProfiler.csproj">
+    <ProjectReference Include="..\..\src\AdoNetProfiler\AdoNetProfiler.csproj">
       <Project>{E10B0E18-7091-4B25-96AB-8B452247281E}</Project>
       <Name>AdoNetProfiler</Name>
     </ProjectReference>
