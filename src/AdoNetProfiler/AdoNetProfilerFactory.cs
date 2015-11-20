@@ -32,6 +32,9 @@ namespace AdoNetProfiler
                 if (_initialized)
                     throw new InvalidOperationException("This factory class has already initialized.");
 
+                // Overwrite DbProviderFactories.
+                Utility.InitialzeDbProviderFactory();
+
                 var constructor = profilerType.GetConstructor(Type.EmptyTypes);
 
                 if (constructor == null)

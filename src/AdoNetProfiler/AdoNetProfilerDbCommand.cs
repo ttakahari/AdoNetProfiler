@@ -28,7 +28,13 @@ namespace AdoNetProfiler
         public override CommandType CommandType
         {
             get { return _command.CommandType; }
-            set { _command.CommandType = value; }
+            set
+            {
+                if (value != CommandType.Text && value != CommandType.StoredProcedure && value != CommandType.TableDirect)
+                    throw new ArgumentOutOfRangeException(nameof(value));
+
+                _command.CommandType = value;
+            }
         }
 
         protected override DbConnection DbConnection
