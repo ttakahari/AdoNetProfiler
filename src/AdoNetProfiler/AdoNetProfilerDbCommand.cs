@@ -8,32 +8,35 @@ namespace AdoNetProfiler
     [DesignerCategory("")]
     internal class AdoNetProfilerDbCommand : DbCommand
     {
-        private DbCommand _command;
         private DbConnection _connection;
         private DbTransaction _transaction;
         private readonly IAdoNetProfiler _profiler;
 
         public override string CommandText
         {
-            get { return _command.CommandText; }
-            set { _command.CommandText = value; }
+            get { return WrappedCommand.CommandText; }
+            set { WrappedCommand.CommandText = value; }
         }
 
         public override int CommandTimeout
         {
-            get { return _command.CommandTimeout; }
-            set { _command.CommandTimeout = value; }
+            get { return WrappedCommand.CommandTimeout; }
+            set { WrappedCommand.CommandTimeout = value; }
         }
 
         public override CommandType CommandType
         {
-            get { return _command.CommandType; }
+            get { return WrappedCommand.CommandType; }
             set
             {
-                if (value != CommandType.Text && value != CommandType.StoredProcedure && value != CommandType.TableDirect)
+                if (value != CommandType.Text &&
+                    value != CommandType.StoredProcedure &&
+                    value != CommandType.TableDirect)
+                {
                     throw new ArgumentOutOfRangeException(nameof(value));
+                }
 
-                _command.CommandType = value;
+                WrappedCommand.CommandType = value;
             }
         }
 
@@ -44,13 +47,13 @@ namespace AdoNetProfiler
             {
                 _connection = value;
                 var adoNetProfilerDbConnection = value as AdoNetProfilerDbConnection;
-                _command.Connection = (adoNetProfilerDbConnection == null)
+                WrappedCommand.Connection = (adoNetProfilerDbConnection == null)
                     ? value
                     : adoNetProfilerDbConnection.WrappedConnection;
             }
         }
 
-        protected override DbParameterCollection DbParameterCollection => _command.Parameters;
+        protected override DbParameterCollection DbParameterCollection => WrappedCommand.Parameters;
 
         protected override DbTransaction DbTransaction
         {
@@ -59,7 +62,7 @@ namespace AdoNetProfiler
             {
                 _transaction = value;
                 var adoNetProfilerDbTransaction = value as AdoNetProfilerDbTransaction;
-                _command.Transaction = (adoNetProfilerDbTransaction == null)
+                WrappedCommand.Transaction = (adoNetProfilerDbTransaction == null)
                     ? value
                     : adoNetProfilerDbTransaction.WrappedTransaction;
             }
@@ -67,24 +70,26 @@ namespace AdoNetProfiler
 
         public override bool DesignTimeVisible
         {
-            get { return _command.DesignTimeVisible; }
-            set { _command.DesignTimeVisible = value; }
+            get { return WrappedCommand.DesignTimeVisible; }
+            set { WrappedCommand.DesignTimeVisible = value; }
         }
 
         public override UpdateRowSource UpdatedRowSource
         {
-            get { return _command.UpdatedRowSource; }
-            set { _command.UpdatedRowSource = value; }
+            get { return WrappedCommand.UpdatedRowSource; }
+            set { WrappedCommand.UpdatedRowSource = value; }
         }
 
-        public DbCommand WrappedCommand => _command;
+        public DbCommand WrappedCommand { get; private set; }
 
         internal AdoNetProfilerDbCommand(DbCommand command, DbConnection connection, IAdoNetProfiler profiler)
         {
             if (command == null)
+            {
                 throw new ArgumentNullException(nameof(command));
+            }
 
-            _command    = command;
+            WrappedCommand    = command;
             _connection = connection;
             _profiler   = profiler;
         }
@@ -92,13 +97,15 @@ namespace AdoNetProfiler
         protected override DbDataReader ExecuteDbDataReader(CommandBehavior behavior)
         {
             if (_profiler == null || !_profiler.IsEnabled)
-                return _command.ExecuteReader(behavior);
+            {
+                return WrappedCommand.ExecuteReader(behavior);
+            }
 
             _profiler.OnCommandStart(this);
 
             try
             {
-                var dbReader = _command.ExecuteReader(behavior);
+                var dbReader = WrappedCommand.ExecuteReader(behavior);
                 
                 return new AdoNetProfilerDbDataReader(dbReader, _profiler);
             }
@@ -116,13 +123,15 @@ namespace AdoNetProfiler
         public override int ExecuteNonQuery()
         {
             if (_profiler == null || !_profiler.IsEnabled)
-                return _command.ExecuteNonQuery();
+            {
+                return WrappedCommand.ExecuteNonQuery();
+            }
 
             _profiler.OnCommandStart(this);
 
             try
             {
-                return _command.ExecuteNonQuery();
+                return WrappedCommand.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
@@ -138,13 +147,15 @@ namespace AdoNetProfiler
         public override object ExecuteScalar()
         {
             if (_profiler == null || !_profiler.IsEnabled)
-                return _command.ExecuteScalar();
+            {
+                return WrappedCommand.ExecuteScalar();
+            }
 
             _profiler.OnCommandStart(this);
 
             try
             {
-                return _command.ExecuteScalar();
+                return WrappedCommand.ExecuteScalar();
             }
             catch (Exception ex)
             {
@@ -159,25 +170,27 @@ namespace AdoNetProfiler
 
         public override void Cancel()
         {
-            _command.Cancel();
+            WrappedCommand.Cancel();
         }
 
         public override void Prepare()
         {
-            _command.Prepare();
+            WrappedCommand.Prepare();
         }
 
         protected override DbParameter CreateDbParameter()
         {
-            return _command.CreateParameter();
+            return WrappedCommand.CreateParameter();
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
-                _command?.Dispose();
+            {
+                WrappedCommand?.Dispose();
+            }
 
-            _command = null;
+            WrappedCommand = null;
 
             base.Dispose(disposing);
         }

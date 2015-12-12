@@ -13,13 +13,13 @@ namespace AdoNetProfiler
             try
             {
                 // Get all factories.
-                DbProviderFactories.GetFactory("");
+                DbProviderFactories.GetFactory("System.Data.SqlClient");
             }
             catch { }
 
             var table = GetProviderFactories();
-
-            foreach (var row in table.Rows.Cast<DataRow>())
+            
+            foreach (var row in table.Rows.Cast<DataRow>().ToList())
             {
                 DbProviderFactory factory;
 
@@ -55,7 +55,7 @@ namespace AdoNetProfiler
             var providerFactories = typeof(DbProviderFactories);
             var providerField = providerFactories.GetField("_configTable", BindingFlags.NonPublic | BindingFlags.Static) ??
                 providerFactories.GetField("_providerTable", BindingFlags.NonPublic | BindingFlags.Static);
-            var registrations = providerField.GetValue(null);
+            var registrations = providerField.GetValue(providerFactories);
 
             var set = registrations as DataSet;
 

@@ -19,10 +19,14 @@ namespace AdoNetProfiler
         internal AdoNetProfilerDbTransaction(DbTransaction transaction, DbConnection connection, IAdoNetProfiler profiler)
         {
             if (transaction == null)
+            {
                 throw new ArgumentNullException(nameof(transaction));
+            }
 
             if (connection == null)
+            {
                 throw new ArgumentNullException(nameof(connection));
+            }
 
             _transaction = transaction;
             _connection  = connection;
@@ -34,12 +38,16 @@ namespace AdoNetProfiler
             if (_profiler == null || !_profiler.IsEnabled)
             {
                 _transaction.Commit();
+                _transaction.Dispose();
+                _transaction = null;
                 return;
             }
             
             _profiler.OnCommitting(this);
 
             _transaction.Commit();
+            _transaction.Dispose();
+            _transaction = null;
 
             _profiler.OnCommitted(_connection);
         }
@@ -49,12 +57,16 @@ namespace AdoNetProfiler
             if (_profiler == null || !_profiler.IsEnabled)
             {
                 _transaction.Rollback();
+                _transaction.Dispose();
+                _transaction = null;
                 return;
             }
             
             _profiler.OnRollbacking(this);
 
             _transaction.Rollback();
+            _transaction.Dispose();
+            _transaction = null;
 
             _profiler.OnRollbacked(_connection);
         }
@@ -62,7 +74,12 @@ namespace AdoNetProfiler
         protected override void Dispose(bool disposing)
         {
             if (disposing)
-                _transaction?.Dispose();
+            {
+                if (_transaction != null)
+                {
+                    Rollback();
+                }
+            }
 
             _transaction = null;
             _connection  = null;

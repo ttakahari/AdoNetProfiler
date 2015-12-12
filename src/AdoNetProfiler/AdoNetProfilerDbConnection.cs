@@ -8,8 +8,6 @@ namespace AdoNetProfiler
     [DesignerCategory("")]
     public class AdoNetProfilerDbConnection : DbConnection
     {
-        private IAdoNetProfiler _profiler;
-        
         public override string ConnectionString
         {
             get { return WrappedConnection.ConnectionString; }
@@ -38,7 +36,9 @@ namespace AdoNetProfiler
         public AdoNetProfilerDbConnection(DbConnection connection, IAdoNetProfiler profiler)
         {
             if (connection == null)
+            {
                 throw new ArgumentNullException(nameof(connection));
+            }
 
             WrappedConnection = connection;
             Profiler          = profiler;
@@ -53,17 +53,17 @@ namespace AdoNetProfiler
         
         public override void Close()
         {
-            if (_profiler == null || !_profiler.IsEnabled)
+            if (Profiler == null || !Profiler.IsEnabled)
             {
                 WrappedConnection.Close();
                 return;
             }
-            
-            _profiler.OnClosing(this);
+
+            Profiler.OnClosing(this);
 
             WrappedConnection.Close();
 
-            _profiler.OnClosed(this);
+            Profiler.OnClosed(this);
         }
         
         public override DataTable GetSchema()
@@ -83,48 +83,52 @@ namespace AdoNetProfiler
 
         public override void Open()
         {
-            if (_profiler == null || !_profiler.IsEnabled)
+            if (Profiler == null || !Profiler.IsEnabled)
             {
                 WrappedConnection.Open();
                 return;
             }
-            
-            _profiler.OnOpening(this);
+
+            Profiler.OnOpening(this);
 
             WrappedConnection.Open();
 
-            _profiler.OnOpened(this);
+            Profiler.OnOpened(this);
         }
         
         protected override DbTransaction BeginDbTransaction(IsolationLevel isolationLevel)
         {
-            if (_profiler == null || !_profiler.IsEnabled)
+            if (Profiler == null || !Profiler.IsEnabled)
+            {
                 return WrappedConnection.BeginTransaction(isolationLevel);
+            }
 
-            _profiler.OnStartingTransaction(this);
+            Profiler.OnStartingTransaction(this);
 
             var transaction = WrappedConnection.BeginTransaction(isolationLevel);
 
-            _profiler.OnStartedTransaction(transaction);
+            Profiler.OnStartedTransaction(transaction);
 
-            return new AdoNetProfilerDbTransaction(transaction, WrappedConnection, _profiler);
+            return new AdoNetProfilerDbTransaction(transaction, WrappedConnection, Profiler);
         }
         
         protected override DbCommand CreateDbCommand()
         {
-            return new AdoNetProfilerDbCommand(WrappedConnection.CreateCommand(), this, _profiler);
+            return new AdoNetProfilerDbCommand(WrappedConnection.CreateCommand(), this, Profiler);
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing && WrappedConnection != null)
             {
+                Close();
+
                 WrappedConnection.StateChange -= StateChangeHandler;
                 WrappedConnection.Dispose();
             }
 
             WrappedConnection = null;
-            _profiler   = null;
+            Profiler          = null;
 
             base.Dispose(disposing);
         }

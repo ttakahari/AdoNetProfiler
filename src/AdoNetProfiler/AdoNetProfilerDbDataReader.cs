@@ -27,7 +27,9 @@ namespace AdoNetProfiler
         internal AdoNetProfilerDbDataReader(DbDataReader reader, IAdoNetProfiler profiler)
         {
             if (reader == null)
+            {
                 throw new ArgumentNullException(nameof(reader));
+            }
 
             _reader   = reader;
             _profiler = profiler;
