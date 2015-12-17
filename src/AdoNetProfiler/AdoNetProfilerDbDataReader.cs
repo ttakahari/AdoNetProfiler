@@ -5,7 +5,7 @@ using System.Data.Common;
 
 namespace AdoNetProfiler
 {
-    internal class AdoNetProfilerDbDataReader : DbDataReader
+    public class AdoNetProfilerDbDataReader : DbDataReader
     {
         private readonly DbDataReader _reader;
         private readonly IAdoNetProfiler _profiler;

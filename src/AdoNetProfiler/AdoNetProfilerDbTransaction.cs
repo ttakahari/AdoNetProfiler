@@ -4,17 +4,16 @@ using System.Data.Common;
 
 namespace AdoNetProfiler
 {
-    internal class AdoNetProfilerDbTransaction : DbTransaction
+    public class AdoNetProfilerDbTransaction : DbTransaction
     {
         private DbConnection _connection;
-        private DbTransaction _transaction;
         private readonly IAdoNetProfiler _profiler;
 
         protected override DbConnection DbConnection => _connection;
 
-        public override IsolationLevel IsolationLevel => _transaction.IsolationLevel;
+        public override IsolationLevel IsolationLevel => WrappedTransaction.IsolationLevel;
 
-        public DbTransaction WrappedTransaction => _transaction;
+        public DbTransaction WrappedTransaction { get; private set; }
 
         internal AdoNetProfilerDbTransaction(DbTransaction transaction, DbConnection connection, IAdoNetProfiler profiler)
         {
@@ -28,26 +27,27 @@ namespace AdoNetProfiler
                 throw new ArgumentNullException(nameof(connection));
             }
 
-            _transaction = transaction;
-            _connection  = connection;
-            _profiler    = profiler;
+            WrappedTransaction = transaction;
+
+            _connection = connection;
+            _profiler   = profiler;
         }
 
         public override void Commit()
         {
             if (_profiler == null || !_profiler.IsEnabled)
             {
-                _transaction.Commit();
-                _transaction.Dispose();
-                _transaction = null;
+                WrappedTransaction.Commit();
+                WrappedTransaction.Dispose();
+                WrappedTransaction = null;
                 return;
             }
             
             _profiler.OnCommitting(this);
 
-            _transaction.Commit();
-            _transaction.Dispose();
-            _transaction = null;
+            WrappedTransaction.Commit();
+            WrappedTransaction.Dispose();
+            WrappedTransaction = null;
 
             _profiler.OnCommitted(_connection);
         }
@@ -56,17 +56,17 @@ namespace AdoNetProfiler
         {
             if (_profiler == null || !_profiler.IsEnabled)
             {
-                _transaction.Rollback();
-                _transaction.Dispose();
-                _transaction = null;
+                WrappedTransaction.Rollback();
+                WrappedTransaction.Dispose();
+                WrappedTransaction = null;
                 return;
             }
             
             _profiler.OnRollbacking(this);
 
-            _transaction.Rollback();
-            _transaction.Dispose();
-            _transaction = null;
+            WrappedTransaction.Rollback();
+            WrappedTransaction.Dispose();
+            WrappedTransaction = null;
 
             _profiler.OnRollbacked(_connection);
         }
@@ -75,13 +75,13 @@ namespace AdoNetProfiler
         {
             if (disposing)
             {
-                if (_transaction != null)
+                if (WrappedTransaction != null)
                 {
                     Rollback();
                 }
             }
 
-            _transaction = null;
+            WrappedTransaction = null;
             _connection  = null;
 
             base.Dispose(disposing);

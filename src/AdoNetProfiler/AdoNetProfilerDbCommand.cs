@@ -6,7 +6,7 @@ using System.Data.Common;
 namespace AdoNetProfiler
 {
     [DesignerCategory("")]
-    internal class AdoNetProfilerDbCommand : DbCommand
+    public class AdoNetProfilerDbCommand : DbCommand
     {
         private DbConnection _connection;
         private DbTransaction _transaction;
@@ -89,7 +89,8 @@ namespace AdoNetProfiler
                 throw new ArgumentNullException(nameof(command));
             }
 
-            WrappedCommand    = command;
+            WrappedCommand = command;
+
             _connection = connection;
             _profiler   = profiler;
         }
