@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>$id$</id>
+        <version>$version$</version>
+        <title>$title$</title>
+        <authors>t.takahari</authors>
+        <owners>t.tkahari</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Profiler for ADO.NET with hooking DbConnection, DbCommand, DbDataReader, DbTransaction.</description>
+        <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+        <projectUrl>https://github.com/ttakahari/AdoNetProfiler</projectUrl>
+        <tags>ADO.NET</tags>
+    </metadata>
+</package>
