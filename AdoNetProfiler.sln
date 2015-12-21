@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoNetProfiler", "src\AdoNetProfiler\AdoNetProfiler.csproj", "{E10B0E18-7091-4B25-96AB-8B452247281E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoNetProfiler.Demo.Console", "AdoNetProfiler.Demo.Console\AdoNetProfiler.Demo.Console.csproj", "{99F6ABC5-2410-4975-A290-C616A7B8673B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoNetProfiler.Demo.Console", "demo\AdoNetProfiler.Demo.Console\AdoNetProfiler.Demo.Console.csproj", "{99F6ABC5-2410-4975-A290-C616A7B8673B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

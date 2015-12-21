@@ -46,7 +46,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\AdoNetProfiler\AdoNetProfiler.csproj">
+    <ProjectReference Include="..\..\src\AdoNetProfiler\AdoNetProfiler.csproj">
       <Project>{e10b0e18-7091-4b25-96ab-8b452247281e}</Project>
       <Name>AdoNetProfiler</Name>
     </ProjectReference>
