@@ -102,7 +102,7 @@ namespace AdoNetProfiler
                 return WrappedCommand.ExecuteReader(behavior);
             }
 
-            _profiler.OnCommandStart(this);
+            _profiler.OnExecuteReaderStart(this);
 
             try
             {
@@ -115,10 +115,6 @@ namespace AdoNetProfiler
                 _profiler.OnCommandError(this, ex);
                 throw;
             }
-            finally
-            {
-                _profiler.OnCommandFinish(this, true);
-            }
         }
 
         public override int ExecuteNonQuery()
@@ -128,11 +124,14 @@ namespace AdoNetProfiler
                 return WrappedCommand.ExecuteNonQuery();
             }
 
-            _profiler.OnCommandStart(this);
+            _profiler.OnExecuteNonQueryStart(this);
 
+            var result = default(int?);
             try
             {
-                return WrappedCommand.ExecuteNonQuery();
+                result = WrappedCommand.ExecuteNonQuery();
+
+                return result.Value;
             }
             catch (Exception ex)
             {
@@ -141,7 +140,7 @@ namespace AdoNetProfiler
             }
             finally
             {
-                _profiler.OnCommandFinish(this, false);
+                _profiler.OnExecuteNonQueryFinish(this, result ?? 0);
             }
         }
 
@@ -152,11 +151,14 @@ namespace AdoNetProfiler
                 return WrappedCommand.ExecuteScalar();
             }
 
-            _profiler.OnCommandStart(this);
+            _profiler.OnExecuteScalarStart(this);
 
+            object result = null;
             try
             {
-                return WrappedCommand.ExecuteScalar();
+                result = WrappedCommand.ExecuteScalar();
+
+                return result;
             }
             catch (Exception ex)
             {
@@ -165,7 +167,7 @@ namespace AdoNetProfiler
             }
             finally
             {
-                _profiler.OnCommandFinish(this, false);
+                _profiler.OnExecuteScalarFinish(this, result);
             }
         }
 

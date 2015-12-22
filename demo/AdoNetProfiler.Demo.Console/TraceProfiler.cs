@@ -80,28 +80,43 @@ namespace AdoNetProfiler.Demo.Console
 
         private IDbCommand _command;
 
-        public void OnCommandStart(IDbCommand command)
+        public void OnExecuteReaderStart(DbCommand command)
         {
             _command = command;
             _stopwatch = Stopwatch.StartNew();
         }
 
-        public void OnCommandFinish(IDbCommand command, bool isReader)
-        {
-            if (!isReader)
-            {
-                _stopwatch.Stop();
-                Trace.WriteLine($"Command Info - Command : {_command.CommandText}, Duration {_stopwatch.Elapsed.TotalMilliseconds} ms");
-            }
-        }
-
-        public void OnReaderFinish(IDataReader reader)
+        public void OnReaderFinish(DbDataReader reader, int record)
         {
             _stopwatch.Stop();
-            Trace.WriteLine($"Command Info - Command : {_command.CommandText}, Duration {_stopwatch.Elapsed.TotalMilliseconds} ms");
+            Trace.WriteLine($"Command Info - Command : {_command.CommandText}, Record : {record}, Duration {_stopwatch.Elapsed.TotalMilliseconds} ms");
         }
 
-        public void OnCommandError(IDbCommand command, Exception exception)
+        public void OnExecuteNonQueryStart(DbCommand command)
+        {
+            _command = command;
+            _stopwatch = Stopwatch.StartNew();
+        }
+
+        public void OnExecuteNonQueryFinish(DbCommand command, int executionRestlt)
+        {
+            _stopwatch.Stop();
+            Trace.WriteLine($"Command Info - Command : {_command.CommandText}, Result : {executionRestlt}, Duration {_stopwatch.Elapsed.TotalMilliseconds} ms");
+        }
+
+        public void OnExecuteScalarStart(DbCommand command)
+        {
+            _command = command;
+            _stopwatch = Stopwatch.StartNew();
+        }
+
+        public void OnExecuteScalarFinish(DbCommand command, object executionRestlt)
+        {
+            _stopwatch.Stop();
+            Trace.WriteLine($"Command Info - Command : {_command.CommandText}, Result : {executionRestlt}, Duration {_stopwatch.Elapsed.TotalMilliseconds} ms");
+        }
+        
+        public void OnCommandError(DbCommand command, Exception exception)
         {
         }
     }

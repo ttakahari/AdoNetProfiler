@@ -36,6 +36,14 @@ namespace AdoNetProfiler.Demo.Console
 
                     using (var command = connection.CreateCommand())
                     {
+                        command.CommandText = @"SELECT COUNT(1) FROM Orders";
+                        command.Transaction = transaction;
+
+                        command.ExecuteScalar();
+                    }
+
+                    using (var command = connection.CreateCommand())
+                    {
                         command.CommandText = @"UPDATE Orders SET OrderDate = @Now WHERE OrderID = @OrderId";
 
                         var parameter1 = command.CreateParameter();

@@ -9,6 +9,7 @@ namespace AdoNetProfiler
     {
         private readonly DbDataReader _reader;
         private readonly IAdoNetProfiler _profiler;
+        private int _record;
 
         public override int Depth => _reader.Depth;
 
@@ -39,7 +40,7 @@ namespace AdoNetProfiler
         {
             _reader?.Close();
 
-            _profiler?.OnReaderFinish(this);
+            _profiler?.OnReaderFinish(this, _record);
         }
 
         public override bool GetBoolean(int ordinal)
@@ -164,7 +165,14 @@ namespace AdoNetProfiler
 
         public override bool Read()
         {
-            return _reader.Read();
+            var result = _reader.Read();
+
+            if (result)
+            {
+                _record++;
+            }
+
+            return result;
         }
     }
 }

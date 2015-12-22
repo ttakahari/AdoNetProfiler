@@ -91,6 +91,7 @@ namespace AdoNetProfiler
 
             Profiler.OnOpening(this);
 
+
             WrappedConnection.Open();
 
             Profiler.OnOpened(this);
