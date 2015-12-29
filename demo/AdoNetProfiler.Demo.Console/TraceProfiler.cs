@@ -86,10 +86,10 @@ namespace AdoNetProfiler.Demo.Console
             _stopwatch = Stopwatch.StartNew();
         }
 
-        public void OnReaderFinish(DbDataReader reader, int record)
+        public void OnReaderFinish(DbDataReader reader, int records)
         {
             _stopwatch.Stop();
-            Trace.WriteLine($"Command Info - Command : {_command.CommandText}, Record : {record}, Duration {_stopwatch.Elapsed.TotalMilliseconds} ms");
+            Trace.WriteLine($"Command Info - Command : {_command.CommandText}, Records : {records}, Duration {_stopwatch.Elapsed.TotalMilliseconds} ms");
         }
 
         public void OnExecuteNonQueryStart(DbCommand command)
