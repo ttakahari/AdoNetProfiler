@@ -122,7 +122,10 @@ namespace AdoNetProfiler
         {
             if (disposing && WrappedConnection != null)
             {
-                Close();
+                if (State != ConnectionState.Closed)
+                {
+                    Close();
+                }
 
                 WrappedConnection.StateChange -= StateChangeHandler;
                 WrappedConnection.Dispose();
