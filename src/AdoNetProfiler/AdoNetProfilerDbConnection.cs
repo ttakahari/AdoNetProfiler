@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
+using System.Threading;
 
 namespace AdoNetProfiler
 {
@@ -90,7 +91,6 @@ namespace AdoNetProfiler
             }
 
             Profiler.OnOpening(this);
-
 
             WrappedConnection.Open();
 

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("AdoNetProfiler")]
-[assembly: AssemblyCopyright("Copyright © 2015 t.takahari")]
+[assembly: AssemblyCopyright("Copyright © 2015-2016 t.takahari")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoNetProfiler", "src\AdoNe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoNetProfiler.Demo.Console", "demo\AdoNetProfiler.Demo.Console\AdoNetProfiler.Demo.Console.csproj", "{99F6ABC5-2410-4975-A290-C616A7B8673B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glimpse.AdoNetProfiler", "src\Glimpse.AdoNetProfiler\Glimpse.AdoNetProfiler.csproj", "{3C51E72B-D43A-4C3E-B6B4-ED4F08FD4704}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoNetProfiler.Demo.Web", "demo\AdoNetProfiler.Demo.Web\AdoNetProfiler.Demo.Web.csproj", "{89AC6CB8-0A77-4FB7-B161-9354E4FA4B88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{99F6ABC5-2410-4975-A290-C616A7B8673B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99F6ABC5-2410-4975-A290-C616A7B8673B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99F6ABC5-2410-4975-A290-C616A7B8673B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C51E72B-D43A-4C3E-B6B4-ED4F08FD4704}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C51E72B-D43A-4C3E-B6B4-ED4F08FD4704}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C51E72B-D43A-4C3E-B6B4-ED4F08FD4704}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C51E72B-D43A-4C3E-B6B4-ED4F08FD4704}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89AC6CB8-0A77-4FB7-B161-9354E4FA4B88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89AC6CB8-0A77-4FB7-B161-9354E4FA4B88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89AC6CB8-0A77-4FB7-B161-9354E4FA4B88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89AC6CB8-0A77-4FB7-B161-9354E4FA4B88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

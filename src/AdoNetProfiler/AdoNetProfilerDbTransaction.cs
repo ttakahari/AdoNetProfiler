@@ -37,38 +37,44 @@ namespace AdoNetProfiler
         {
             if (_profiler == null || !_profiler.IsEnabled)
             {
-                WrappedTransaction.Commit();
-                WrappedTransaction.Dispose();
-                WrappedTransaction = null;
+                CommitWrappedTransaction();
                 return;
             }
             
             _profiler.OnCommitting(this);
 
+            CommitWrappedTransaction();
+
+            _profiler.OnCommitted(_connection);
+        }
+
+        private void CommitWrappedTransaction()
+        {
             WrappedTransaction.Commit();
             WrappedTransaction.Dispose();
             WrappedTransaction = null;
-
-            _profiler.OnCommitted(_connection);
         }
 
         public override void Rollback()
         {
             if (_profiler == null || !_profiler.IsEnabled)
             {
-                WrappedTransaction.Rollback();
-                WrappedTransaction.Dispose();
-                WrappedTransaction = null;
+                RollbackWrappedTransaction();
                 return;
             }
             
             _profiler.OnRollbacking(this);
 
+            RollbackWrappedTransaction();
+
+            _profiler.OnRollbacked(_connection);
+        }
+
+        private void RollbackWrappedTransaction()
+        {
             WrappedTransaction.Rollback();
             WrappedTransaction.Dispose();
             WrappedTransaction = null;
-
-            _profiler.OnRollbacked(_connection);
         }
 
         protected override void Dispose(bool disposing)
