@@ -115,32 +115,52 @@ public interface IAdoNetProfiler
     /// </summary>
     /// <param name="connection">The current connection.</param>
     void OnRollbacked(DbConnection connection);
-        
+
     /// <summary>
-    /// Execute brefore the command executes.
+    /// Execute before <see cref="DbCommand.ExecuteReader()"/> executes.
     /// </summary>
     /// <param name="command">The executing command.</param>
-    void OnCommandStart(IDbCommand command);
+    void OnExecuteReaderStart(DbCommand command);
 
     /// <summary>
-    /// Execute after the command executes.
-    /// </summary>
-    /// <param name="command">The executed command.</param>
-    /// <param name="isReader">Called by ExecuteReader or not.</param>
-    void OnCommandFinish(IDbCommand command, bool isReader);
-
-    /// <summary>
-    /// Execute after the stream finishs be read.
+    /// Execute after <see cref="DbDataReader"/> reads.
     /// </summary>
     /// <param name="reader">The stream from data source.</param>
-    void OnReaderFinish(IDataReader reader);
+    /// <param name="record">The number of read data.</param>
+    void OnReaderFinish(DbDataReader reader, int record);
+
+    /// <summary>
+    /// Execute before <see cref="DbCommand.ExecuteNonQuery"/> executes.
+    /// </summary>
+    /// <param name="command">The executing command.</param>
+    void OnExecuteNonQueryStart(DbCommand command);
+
+    /// <summary>
+    /// Execute after <see cref="DbCommand.ExecuteNonQuery"/> executes.
+    /// </summary>
+    /// <param name="command">The executing command.</param>
+    /// <param name="executionRestlt">The result of executing <see cref="DbCommand.ExecuteNonQuery"/>.</param>
+    void OnExecuteNonQueryFinish(DbCommand command, int executionRestlt);
+
+    /// <summary>
+    /// Execute before <see cref="DbCommand.ExecuteScalar"/> executes.
+    /// </summary>
+    /// <param name="command">The executing command.</param>
+    void OnExecuteScalarStart(DbCommand command);
+
+    /// <summary>
+    /// Execute after <see cref="DbCommand.ExecuteScalar"/> executes.
+    /// </summary>
+    /// <param name="command">The executing command.</param>
+    /// <param name="executionRestlt">The result of executing <see cref="DbCommand.ExecuteScalar"/>.</param>
+    void OnExecuteScalarFinish(DbCommand command, object executionRestlt);
 
     /// <summary>
     /// Execute when the error occurs while the command executing.
     /// </summary>
     /// <param name="command">The executing command.</param>
     /// <param name="exception">The occurred error.</param>
-    void OnCommandError(IDbCommand command, Exception exception);
+    void OnCommandError(DbCommand command, Exception exception);
 }
 ```
 
