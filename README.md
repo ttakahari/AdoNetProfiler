@@ -166,6 +166,30 @@ public interface IAdoNetProfiler
 
 Implementing this interface, you can get your profiler.
 
+## Glimpse
+
+<a href="http://getglimpse.com/">Glimpse</a> is profiling library for ASP.NET.
+
+AdoNetProfiler has the library for Glimpse.
+
+from NuGet - <a href="https://www.nuget.org/packages/Glimpse.AdoNetProfiler/">Glimpse.AdoNetProfiler</a>
+
+```ps1
+PM > Install-Package Glimpse.AdoNetProfiler
+```
+
+Glimpse.Ado, that has already been provided as a part of Glimpse libaries, displays SQL profilings.
+
+But Glimpse.AdoNetProfiler displays connection and transaction profilings, to say nothing of SQL.
+
+<img src="https://github.com/ttakahari/AdoNetProfiler/blob/master/docs/timeline.png" />
+
+<img src="https://github.com/ttakahari/AdoNetProfiler/blob/master/docs/command.png" />
+
+<img src="https://github.com/ttakahari/AdoNetProfiler/blob/master/docs/connection.png" />
+
+<img src="https://github.com/ttakahari/AdoNetProfiler/blob/master/docs/transaction.png" />
+
 ## Lisence
 
 under <a href="http://opensource.org/licenses/MIT">MIT License</a>
