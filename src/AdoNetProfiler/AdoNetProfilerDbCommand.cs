@@ -1,11 +1,15 @@
 ﻿using System;
+#if !COREFX
 using System.ComponentModel;
+#endif
 using System.Data;
 using System.Data.Common;
 
 namespace AdoNetProfiler
 {
+#if !COREFX
     [DesignerCategory("")]
+#endif
     public class AdoNetProfilerDbCommand : DbCommand
     {
         private DbConnection _connection;
@@ -46,7 +50,9 @@ namespace AdoNetProfiler
             set
             {
                 _connection = value;
+
                 var adoNetProfilerDbConnection = value as AdoNetProfilerDbConnection;
+
                 WrappedCommand.Connection = (adoNetProfilerDbConnection == null)
                     ? value
                     : adoNetProfilerDbConnection.WrappedConnection;
@@ -61,7 +67,9 @@ namespace AdoNetProfiler
             set
             {
                 _transaction = value;
+
                 var adoNetProfilerDbTransaction = value as AdoNetProfilerDbTransaction;
+
                 WrappedCommand.Transaction = (adoNetProfilerDbTransaction == null)
                     ? value
                     : adoNetProfilerDbTransaction.WrappedTransaction;
@@ -113,6 +121,7 @@ namespace AdoNetProfiler
             catch (Exception ex)
             {
                 _profiler.OnCommandError(this, ex);
+
                 throw;
             }
         }
@@ -127,6 +136,7 @@ namespace AdoNetProfiler
             _profiler.OnExecuteNonQueryStart(this);
 
             var result = default(int?);
+
             try
             {
                 result = WrappedCommand.ExecuteNonQuery();
@@ -136,6 +146,7 @@ namespace AdoNetProfiler
             catch (Exception ex)
             {
                 _profiler.OnCommandError(this, ex);
+
                 throw;
             }
             finally
@@ -154,6 +165,7 @@ namespace AdoNetProfiler
             _profiler.OnExecuteScalarStart(this);
 
             object result = null;
+
             try
             {
                 result = WrappedCommand.ExecuteScalar();
@@ -163,6 +175,7 @@ namespace AdoNetProfiler
             catch (Exception ex)
             {
                 _profiler.OnCommandError(this, ex);
+
                 throw;
             }
             finally

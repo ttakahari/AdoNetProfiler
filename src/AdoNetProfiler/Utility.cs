@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !COREFX
+using System;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
@@ -40,6 +41,7 @@ namespace AdoNetProfiler
                 var proxyType = typeof(AdoNetProfilerProviderFactory<>).MakeGenericType(factory.GetType());
 
                 var newRow = table.NewRow();
+
                 newRow["Name"]                  = row["Name"];
                 newRow["Description"]           = row["Description"];
                 newRow["InvariantName"]         = row["InvariantName"];
@@ -53,9 +55,9 @@ namespace AdoNetProfiler
         private static DataTable GetProviderFactories()
         {
             var providerFactories = typeof(DbProviderFactories);
-            var providerField = providerFactories.GetField("_configTable", BindingFlags.NonPublic | BindingFlags.Static) ??
+            var providerField     = providerFactories.GetField("_configTable", BindingFlags.NonPublic | BindingFlags.Static) ??
                 providerFactories.GetField("_providerTable", BindingFlags.NonPublic | BindingFlags.Static);
-            var registrations = providerField.GetValue(providerFactories);
+            var registrations     = providerField.GetValue(providerFactories);
 
             var set = registrations as DataSet;
 
@@ -65,3 +67,4 @@ namespace AdoNetProfiler
         }
     }
 }
+#endif

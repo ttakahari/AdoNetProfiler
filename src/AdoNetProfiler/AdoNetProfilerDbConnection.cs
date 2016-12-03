@@ -1,12 +1,15 @@
 ﻿using System;
+#if !COREFX
 using System.ComponentModel;
+#endif
 using System.Data;
 using System.Data.Common;
-using System.Threading;
 
 namespace AdoNetProfiler
 {
+#if !COREFX
     [DesignerCategory("")]
+#endif
     public class AdoNetProfilerDbConnection : DbConnection
     {
         public override string ConnectionString
@@ -25,14 +28,18 @@ namespace AdoNetProfiler
         
         public override ConnectionState State => WrappedConnection.State;
 
+#if !COREFX
         protected override bool CanRaiseEvents => true;
+#endif
 
         public DbConnection WrappedConnection { get; private set; }
 
         public IAdoNetProfiler Profiler { get; private set; }
 
+#if !COREFX
         public AdoNetProfilerDbConnection(DbConnection connection)
             : this(connection, AdoNetProfilerFactory.GetProfiler()) { }
+#endif
 
         public AdoNetProfilerDbConnection(DbConnection connection, IAdoNetProfiler profiler)
         {
@@ -57,6 +64,7 @@ namespace AdoNetProfiler
             if (Profiler == null || !Profiler.IsEnabled)
             {
                 WrappedConnection.Close();
+
                 return;
             }
 
@@ -66,7 +74,8 @@ namespace AdoNetProfiler
 
             Profiler.OnClosed(this);
         }
-        
+
+#if !COREFX
         public override DataTable GetSchema()
         {
             return WrappedConnection.GetSchema();
@@ -81,12 +90,14 @@ namespace AdoNetProfiler
         {
             return WrappedConnection.GetSchema(collectionName, restrictionValues);
         }
+#endif
 
         public override void Open()
         {
             if (Profiler == null || !Profiler.IsEnabled)
             {
                 WrappedConnection.Open();
+
                 return;
             }
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
+#if !COREFX
 using System.Data;
+#endif
 using System.Data.Common;
 
 namespace AdoNetProfiler
@@ -36,12 +38,12 @@ namespace AdoNetProfiler
             _profiler = profiler;
         }
 
+#if !COREFX
         public override void Close()
         {
             _reader?.Close();
-
-            _profiler?.OnReaderFinish(this, _records);
         }
+#endif
 
         public override bool GetBoolean(int ordinal)
         {
@@ -133,10 +135,12 @@ namespace AdoNetProfiler
             return _reader.GetOrdinal(name);
         }
 
+#if !COREFX
         public override DataTable GetSchemaTable()
         {
             return _reader.GetSchemaTable();
         }
+#endif
 
         public override string GetString(int ordinal)
         {
@@ -173,6 +177,13 @@ namespace AdoNetProfiler
             }
 
             return result;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _profiler.OnReaderFinish(this, _records);
+
+            base.Dispose(disposing);
         }
     }
 }

@@ -17,15 +17,8 @@ namespace AdoNetProfiler
 
         internal AdoNetProfilerDbTransaction(DbTransaction transaction, DbConnection connection, IAdoNetProfiler profiler)
         {
-            if (transaction == null)
-            {
-                throw new ArgumentNullException(nameof(transaction));
-            }
-
-            if (connection == null)
-            {
-                throw new ArgumentNullException(nameof(connection));
-            }
+            if (transaction == null) throw new ArgumentNullException(nameof(transaction));
+            if (connection  == null) throw new ArgumentNullException(nameof(connection));
 
             WrappedTransaction = transaction;
 
@@ -38,6 +31,7 @@ namespace AdoNetProfiler
             if (_profiler == null || !_profiler.IsEnabled)
             {
                 CommitWrappedTransaction();
+
                 return;
             }
             
@@ -60,6 +54,7 @@ namespace AdoNetProfiler
             if (_profiler == null || !_profiler.IsEnabled)
             {
                 RollbackWrappedTransaction();
+
                 return;
             }
             
@@ -88,7 +83,8 @@ namespace AdoNetProfiler
             }
 
             WrappedTransaction = null;
-            _connection  = null;
+
+            _connection = null;
 
             base.Dispose(disposing);
         }

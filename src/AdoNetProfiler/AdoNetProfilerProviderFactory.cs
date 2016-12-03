@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !COREFX
+using System;
 using System.Data.Common;
 using System.Reflection;
 using System.Security;
@@ -21,7 +22,7 @@ namespace AdoNetProfiler
 
         public AdoNetProfilerProviderFactory()
         {
-            var field = typeof (TProviderFactory).GetField("Instance", BindingFlags.Public | BindingFlags.Static);
+            var field = typeof(TProviderFactory).GetField("Instance", BindingFlags.Public | BindingFlags.Static);
 
             if (field == null)
             {
@@ -90,3 +91,4 @@ namespace AdoNetProfiler
         }
     }
 }
+#endif

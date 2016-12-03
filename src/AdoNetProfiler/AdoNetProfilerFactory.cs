@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !COREFX
+using System;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -27,7 +28,7 @@ namespace AdoNetProfiler
                 throw new ArgumentNullException(nameof(profilerType));
             }
 
-            if (profilerType.GetInterfaces().All(x => x != typeof (IAdoNetProfiler)))
+            if (profilerType.GetInterfaces().All(x => x != typeof(IAdoNetProfiler)))
             {
                 throw new ArgumentException($"The type must be {typeof(IAdoNetProfiler).FullName}.", nameof(profilerType));
             }
@@ -50,7 +51,6 @@ namespace AdoNetProfiler
                 }
 
                 _constructor = constructor;
-
                 _initialized = true;
             });
         }
@@ -69,3 +69,4 @@ namespace AdoNetProfiler
         }
     }
 }
+#endif
