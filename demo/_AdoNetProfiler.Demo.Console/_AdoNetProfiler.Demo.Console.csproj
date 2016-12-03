@@ -45,12 +45,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\_AdoNetProfiler\_AdoNetProfiler.csproj">
-      <Project>{e10b0e18-7091-4b25-96ab-8b452247281e}</Project>
-      <Name>_AdoNetProfiler</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

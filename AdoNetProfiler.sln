@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_AdoNetProfiler", "src\_AdoNetProfiler\_AdoNetProfiler.csproj", "{E10B0E18-7091-4B25-96AB-8B452247281E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_Glimpse.AdoNetProfiler", "src\_Glimpse.AdoNetProfiler\_Glimpse.AdoNetProfiler.csproj", "{3C51E72B-D43A-4C3E-B6B4-ED4F08FD4704}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_AdoNetProfiler.Demo.Console", "demo\_AdoNetProfiler.Demo.Console\_AdoNetProfiler.Demo.Console.csproj", "{99F6ABC5-2410-4975-A290-C616A7B8673B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_AdoNetProfiler.Demo.Web", "demo\_AdoNetProfiler.Demo.Web\_AdoNetProfiler.Demo.Web.csproj", "{89AC6CB8-0A77-4FB7-B161-9354E4FA4B88}"
@@ -23,14 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E10B0E18-7091-4B25-96AB-8B452247281E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E10B0E18-7091-4B25-96AB-8B452247281E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E10B0E18-7091-4B25-96AB-8B452247281E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E10B0E18-7091-4B25-96AB-8B452247281E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3C51E72B-D43A-4C3E-B6B4-ED4F08FD4704}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C51E72B-D43A-4C3E-B6B4-ED4F08FD4704}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C51E72B-D43A-4C3E-B6B4-ED4F08FD4704}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3C51E72B-D43A-4C3E-B6B4-ED4F08FD4704}.Release|Any CPU.Build.0 = Release|Any CPU
 		{99F6ABC5-2410-4975-A290-C616A7B8673B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{99F6ABC5-2410-4975-A290-C616A7B8673B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99F6ABC5-2410-4975-A290-C616A7B8673B}.Release|Any CPU.ActiveCfg = Release|Any CPU
