@@ -1,0 +1,23 @@
+﻿{
+  "title": "AdoNetProfiler",
+  "version": "0.3.0",
+  "authors": [ "t.takahari" ],
+  "description": "Profiler for ADO.NET with hooking DbConnection, DbCommand, DbDataReader, DbTransaction.",
+
+  "frameworks": {
+    "net46": {
+      "frameworkAssemblies": {
+        "System.Data": "4.0.0",
+        "System.Xml": "4.0.0"
+      }
+    }
+  },
+
+  "packOptions": {
+    "owners": [ "t.takahari" ],
+    "requireLicenseAcceptance": false,
+    "licenseUrl": "http://opensource.org/licenses/MIT",
+    "projectUrl": "https://github.com/ttakahari/AdoNetProfiler",
+    "tags": [ "ADO.NET" ]
+  }
+}

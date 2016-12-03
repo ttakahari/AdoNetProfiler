@@ -1,0 +1,64 @@
+{
+  "locked": false,
+  "version": 2,
+  "targets": {
+    ".NETFramework,Version=v4.6": {
+      "Glimpse/1.8.6": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Glimpse.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Glimpse.Core.dll": {}
+        }
+      },
+      "AdoNetProfiler/0.3.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6",
+        "frameworkAssemblies": [
+          "System.Data",
+          "System.Xml"
+        ],
+        "compile": {
+          "net46/AdoNetProfiler.dll": {}
+        },
+        "runtime": {
+          "net46/AdoNetProfiler.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Glimpse/1.8.6": {
+      "sha512": "jubTSNDTgjCcCLibXAB28hnC2MPRjjG5PIrx4Wc5ZILsx8qt3bdEGGIS2LRMQk8mcGHWhEFFPLWFaJQJyWtS9Q==",
+      "type": "package",
+      "path": "Glimpse/1.8.6",
+      "files": [
+        "Glimpse.1.8.6.nupkg.sha512",
+        "Glimpse.nuspec",
+        "docs/Glimpse.Core.Documentation.chm",
+        "lib/net35/Glimpse.Core.dll",
+        "lib/net40/Glimpse.Core.dll",
+        "lib/net45/Glimpse.Core.dll",
+        "tools/glimpse.psm1",
+        "tools/init.ps1",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
+    "AdoNetProfiler/0.3.0": {
+      "type": "project",
+      "path": "../AdoNetProfiler/project.json",
+      "msbuildProject": "../AdoNetProfiler/AdoNetProfiler.xproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "": [],
+    ".NETFramework,Version=v4.6": [
+      "AdoNetProfiler >= 0.3.0 < 0.4.0",
+      "Glimpse >= 1.8.6"
+    ]
+  },
+  "tools": {},
+  "projectFileToolGroups": {}
+}

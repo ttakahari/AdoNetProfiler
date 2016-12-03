@@ -46,9 +46,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\AdoNetProfiler\AdoNetProfiler.csproj">
+    <ProjectReference Include="..\..\src\_AdoNetProfiler\_AdoNetProfiler.csproj">
       <Project>{e10b0e18-7091-4b25-96ab-8b452247281e}</Project>
-      <Name>AdoNetProfiler</Name>
+      <Name>_AdoNetProfiler</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

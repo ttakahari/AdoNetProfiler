@@ -1,18 +1,19 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Glimpse.AdoNetProfiler")]
-[assembly: AssemblyDescription("")]
+// General Information about an assembly is controlled through the following
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Glimpse.AdoNetProfiler")]
-[assembly: AssemblyCopyright("Copyright © 2016 t.takahari")]
 [assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
 
+// Setting ComVisible to false makes the types in this assembly not visible
+// to COM components.  If you need to access a type in this assembly from
+// COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 
-[assembly: Guid("3c51e72b-d43a-4c3e-b6b4-ed4f08fd4704")]
-
-[assembly: AssemblyVersion("0.1.0")]
-[assembly: AssemblyFileVersion("0.1.0")]
+// The following GUID is for the ID of the typelib if this project is exposed to COM
+[assembly: Guid("0aa019fc-dd58-4744-9c7e-dc70765a8fe9")]

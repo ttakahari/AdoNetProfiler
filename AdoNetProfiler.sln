@@ -1,15 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoNetProfiler", "src\AdoNetProfiler\AdoNetProfiler.csproj", "{E10B0E18-7091-4B25-96AB-8B452247281E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_AdoNetProfiler", "src\_AdoNetProfiler\_AdoNetProfiler.csproj", "{E10B0E18-7091-4B25-96AB-8B452247281E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoNetProfiler.Demo.Console", "demo\AdoNetProfiler.Demo.Console\AdoNetProfiler.Demo.Console.csproj", "{99F6ABC5-2410-4975-A290-C616A7B8673B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_Glimpse.AdoNetProfiler", "src\_Glimpse.AdoNetProfiler\_Glimpse.AdoNetProfiler.csproj", "{3C51E72B-D43A-4C3E-B6B4-ED4F08FD4704}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glimpse.AdoNetProfiler", "src\Glimpse.AdoNetProfiler\Glimpse.AdoNetProfiler.csproj", "{3C51E72B-D43A-4C3E-B6B4-ED4F08FD4704}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_AdoNetProfiler.Demo.Console", "demo\_AdoNetProfiler.Demo.Console\_AdoNetProfiler.Demo.Console.csproj", "{99F6ABC5-2410-4975-A290-C616A7B8673B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoNetProfiler.Demo.Web", "demo\AdoNetProfiler.Demo.Web\AdoNetProfiler.Demo.Web.csproj", "{89AC6CB8-0A77-4FB7-B161-9354E4FA4B88}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_AdoNetProfiler.Demo.Web", "demo\_AdoNetProfiler.Demo.Web\_AdoNetProfiler.Demo.Web.csproj", "{89AC6CB8-0A77-4FB7-B161-9354E4FA4B88}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{92781B86-EFF9-461B-BF97-50375E47C8A3}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AdoNetProfiler", "src\AdoNetProfiler\AdoNetProfiler.xproj", "{A0197ADD-20E0-42C9-98DC-EF5464F62FD0}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Glimpse.AdoNetProfiler", "src\Glimpse.AdoNetProfiler\Glimpse.AdoNetProfiler.xproj", "{0AA019FC-DD58-4744-9C7E-DC70765A8FE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,20 +27,32 @@ Global
 		{E10B0E18-7091-4B25-96AB-8B452247281E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E10B0E18-7091-4B25-96AB-8B452247281E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E10B0E18-7091-4B25-96AB-8B452247281E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{99F6ABC5-2410-4975-A290-C616A7B8673B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{99F6ABC5-2410-4975-A290-C616A7B8673B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{99F6ABC5-2410-4975-A290-C616A7B8673B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{99F6ABC5-2410-4975-A290-C616A7B8673B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3C51E72B-D43A-4C3E-B6B4-ED4F08FD4704}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3C51E72B-D43A-4C3E-B6B4-ED4F08FD4704}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C51E72B-D43A-4C3E-B6B4-ED4F08FD4704}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C51E72B-D43A-4C3E-B6B4-ED4F08FD4704}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99F6ABC5-2410-4975-A290-C616A7B8673B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99F6ABC5-2410-4975-A290-C616A7B8673B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99F6ABC5-2410-4975-A290-C616A7B8673B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99F6ABC5-2410-4975-A290-C616A7B8673B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{89AC6CB8-0A77-4FB7-B161-9354E4FA4B88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{89AC6CB8-0A77-4FB7-B161-9354E4FA4B88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89AC6CB8-0A77-4FB7-B161-9354E4FA4B88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89AC6CB8-0A77-4FB7-B161-9354E4FA4B88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0197ADD-20E0-42C9-98DC-EF5464F62FD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0197ADD-20E0-42C9-98DC-EF5464F62FD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0197ADD-20E0-42C9-98DC-EF5464F62FD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0197ADD-20E0-42C9-98DC-EF5464F62FD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AA019FC-DD58-4744-9C7E-DC70765A8FE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AA019FC-DD58-4744-9C7E-DC70765A8FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AA019FC-DD58-4744-9C7E-DC70765A8FE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AA019FC-DD58-4744-9C7E-DC70765A8FE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A0197ADD-20E0-42C9-98DC-EF5464F62FD0} = {92781B86-EFF9-461B-BF97-50375E47C8A3}
+		{0AA019FC-DD58-4744-9C7E-DC70765A8FE9} = {92781B86-EFF9-461B-BF97-50375E47C8A3}
 	EndGlobalSection
 EndGlobal
