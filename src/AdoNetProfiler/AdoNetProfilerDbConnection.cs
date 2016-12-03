@@ -145,7 +145,10 @@ namespace AdoNetProfiler
             WrappedConnection = null;
             Profiler          = null;
 
+            // corefx calls Close() in Dispose() without checking ConnectionState.
+#if !COREFX
             base.Dispose(disposing);
+#endif
         }
 
         private void StateChangeHandler(object sender, StateChangeEventArgs stateChangeEventArguments)

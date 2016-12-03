@@ -183,6 +183,13 @@ namespace AdoNetProfiler
         {
             _profiler.OnReaderFinish(this, _records);
 
+#if COREFX
+            if (disposing)
+            {
+                _reader.Dispose();
+            }
+#endif
+
             base.Dispose(disposing);
         }
     }
