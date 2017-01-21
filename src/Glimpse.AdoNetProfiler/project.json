@@ -1,8 +1,9 @@
 ﻿{
   "title": "Glimpse.AdoNetProfiler",
   "version": "0.3.0",
-  "authors": [ "t.takahari" ],
   "description": "Glimpse profiler for ADO.NET with using AdoNetProfiler.",
+  "authors": [ "t.takahari" ],
+  "copyright": "Copyright t.takahari 2017",
 
   "frameworks": {
     "net46": {
@@ -13,10 +14,18 @@
     }
   },
 
+  "buildOptions": {
+    "xmlDoc": true
+  },
+
   "packOptions": {
     "owners": [ "t.takahari" ],
     "requireLicenseAcceptance": false,
     "licenseUrl": "http://opensource.org/licenses/MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/ttakahari/AdoNetProfiler"
+    },
     "projectUrl": "https://github.com/ttakahari/AdoNetProfiler",
     "tags": [ "ADO.NET", "Glimpse" ]
   }
