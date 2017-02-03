@@ -7,12 +7,17 @@ using Glimpse.Core.Tab.Assist;
 
 namespace Glimpse.AdoNetProfiler.Tabs
 {
+    /// <summary>
+    /// The glimpse tab for database connections. 
+    /// </summary>
     public class ConnectionTab : TabBase, ITabSetup, ITabLayout, ILayoutControl
     {
         private static readonly object _layout;
 
+        /// <inheritdic cref="TabBase.Name" />
         public override string Name => "Connection";
 
+        /// <inheritdic cref="ILayoutControl.KeysHeadings" />
         public bool KeysHeadings => true;
 
         static ConnectionTab()
@@ -50,6 +55,7 @@ namespace Glimpse.AdoNetProfiler.Tabs
                 .Build();
         }
 
+        /// <inheritdic cref="TabBase.GetData(ITabContext)" />
         public override object GetData(ITabContext context)
         {
             var connectionLifetimes = context.GetMessages<ConnectionLifetimeTimelineMessage>().ToArray();
@@ -152,6 +158,7 @@ namespace Glimpse.AdoNetProfiler.Tabs
             return root.Build();
         }
 
+        /// <inheritdic cref="ITabSetup.Setup(ITabSetupContext)" />
         public void Setup(ITabSetupContext context)
         {
             context.PersistMessages<CommandTimelineMessage>();
@@ -161,6 +168,7 @@ namespace Glimpse.AdoNetProfiler.Tabs
             context.PersistMessages<TransactionEventTimelineMessage>();
         }
 
+        /// <inheritdic cref="ITabLayout.GetLayout()" />
         public object GetLayout()
         {
             return _layout;
