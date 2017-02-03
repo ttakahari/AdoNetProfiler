@@ -28,12 +28,14 @@ namespace Glimpse.AdoNetProfiler.Timelines
         internal void WriteTimelineMessage(int records)
         {
             var timelineMessage = new CommandTimelineMessage(_command, _connetionId, _transactionId, records);
+
             WriteTimelineMessageCore(timelineMessage);
         }
 
         internal void WriteTimelineMessage(bool isError)
         {
             var timelineMessage = new CommandTimelineMessage(_command, _connetionId, _transactionId, isError);
+
             WriteTimelineMessageCore(timelineMessage);
         }
     }

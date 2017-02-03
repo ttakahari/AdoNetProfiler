@@ -31,6 +31,7 @@ namespace Glimpse.AdoNetProfiler.Timelines
         internal void WriteTimelineMessage()
         {
             var timelineMessage = new TransactionEventTimelineMessage(_connection, _connectionId, _transactionId, _transactionEvent);
+
             WriteTimelineMessageCore(timelineMessage);
         }
     }
@@ -58,6 +59,7 @@ namespace Glimpse.AdoNetProfiler.Timelines
         internal void WriteTimelineMessage(bool isComitted)
         {
             var timelineMessage = new TransactionLifetimeTimelineMessage(_connection, _connetionId, TransactionId, isComitted);
+
             WriteTimelineMessageCore(timelineMessage);
         }
     }

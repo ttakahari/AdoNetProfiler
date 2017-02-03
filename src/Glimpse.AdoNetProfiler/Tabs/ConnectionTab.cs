@@ -58,20 +58,20 @@ namespace Glimpse.AdoNetProfiler.Tabs
         /// <inheritdic cref="TabBase.GetData(ITabContext)" />
         public override object GetData(ITabContext context)
         {
-            var connectionLifetimes = context.GetMessages<ConnectionLifetimeTimelineMessage>().ToArray();
-            var connectionEvents = context.GetMessages<ConnectionEventTimelineMessage>().ToArray();
+            var connectionLifetimes  = context.GetMessages<ConnectionLifetimeTimelineMessage>().ToArray();
+            var connectionEvents     = context.GetMessages<ConnectionEventTimelineMessage>().ToArray();
             var transactionLifetimes = context.GetMessages<TransactionLifetimeTimelineMessage>().ToArray();
-            var transactionEvents = context.GetMessages<TransactionEventTimelineMessage>().ToArray();
-            var commands = context.GetMessages<CommandTimelineMessage>().ToArray();
+            var transactionEvents    = context.GetMessages<TransactionEventTimelineMessage>().ToArray();
+            var commands             = context.GetMessages<CommandTimelineMessage>().ToArray();
             
             var statisticsSection = new TabSection("Database", "Connections", "Queries", "Transactions", "Total Connection Duration");
-            var eventSection = new TabSection("Database", "Events", "Queries", "Total Duration");
+            var eventSection      = new TabSection("Database", "Events", "Queries", "Total Duration");
 
             // Statistics
             foreach (var database in connectionLifetimes.OrderBy(x => x.Offset).GroupBy(x => x.Database).ToArray())
             {
-                var connectionCount = database.Count();
-                var commandCount = database.Sum(x => commands.Count(y => y.ConnectionId == x.ConnectionId));
+                var connectionCount  = database.Count();
+                var commandCount     = database.Sum(x => commands.Count(y => y.ConnectionId == x.ConnectionId));
                 var transactionCount = database.Sum(x => transactionLifetimes.Count(y => y.ConnectionId == x.ConnectionId));
 
                 var duration = database
@@ -127,7 +127,7 @@ namespace Glimpse.AdoNetProfiler.Tabs
                     .ToArray();
 
                 var eventDetailSection = new TabSection("EventType", "EventName", "Duration", "Offset");
-                var duplicatedEvents = new HashSet<string>();
+                var duplicatedEvents   = new HashSet<string>();
 
                 foreach (var @event in events)
                 {

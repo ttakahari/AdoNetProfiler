@@ -61,13 +61,15 @@ namespace Glimpse.AdoNetProfiler.Tabs
                 return null;
             }
 
-            var ordinal = 1;
-            var duplicationKeys = new HashSet<string>();
+            var ordinal          = 1;
+            var duplicationKeys  = new HashSet<string>();
             var duplicationCount = 0;
-            var queries = new TabSection("Ordinal", "Database", "Command", "Parameters", "CommandType", "With Transaction", "Records", "IsError", "Duration", "Offset");
+            var queries          = new TabSection("Ordinal", "Database", "Command", "Parameters", "CommandType", "With Transaction", "Records", "IsError", "Duration", "Offset");
+
             foreach (var command in commands)
             {
                 var parameters = new TabSection("Name", "Value", "DbType", "Direction");
+
                 foreach (var parameter in command.Parameters)
                 {
                     parameters.AddRow()
@@ -90,6 +92,7 @@ namespace Glimpse.AdoNetProfiler.Tabs
                     .Column(command.Offset);
 
                 var isDuplicated = !duplicationKeys.Add(command.CommandText);
+
                 if (isDuplicated)
                 {
                     row.WarnIf(true);

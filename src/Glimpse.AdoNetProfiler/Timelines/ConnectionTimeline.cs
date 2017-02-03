@@ -29,6 +29,7 @@ namespace Glimpse.AdoNetProfiler.Timelines
         internal void WriteTimelineMessage()
         {
             var timelineMessage = new ConnectionEventTimelineMessage(_connection, _connectionId, _connectionEvent);
+
             WriteTimelineMessageCore(timelineMessage);
         }
     }
@@ -54,6 +55,7 @@ namespace Glimpse.AdoNetProfiler.Timelines
         internal void WriteTimelineMessage()
         {
             var timelineMessage = new ConnectionLifetimeTimelineMessage(_connection, ConnectionId);
+
             WriteTimelineMessageCore(timelineMessage);
         }
     }

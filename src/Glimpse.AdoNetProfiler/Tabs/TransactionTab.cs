@@ -57,13 +57,13 @@ namespace Glimpse.AdoNetProfiler.Tabs
         /// <inheritdic cref="TabBase.GetData(ITabContext)" />
         public override object GetData(ITabContext context)
         {
-            var connectionLifetimes = context.GetMessages<ConnectionLifetimeTimelineMessage>().ToArray();
+            var connectionLifetimes  = context.GetMessages<ConnectionLifetimeTimelineMessage>().ToArray();
             var transactionLifetimes = context.GetMessages<TransactionLifetimeTimelineMessage>().ToArray();
-            var transactionEvents = context.GetMessages<TransactionEventTimelineMessage>().ToArray();
-            var commands = context.GetMessages<CommandTimelineMessage>().ToArray();
+            var transactionEvents    = context.GetMessages<TransactionEventTimelineMessage>().ToArray();
+            var commands             = context.GetMessages<CommandTimelineMessage>().ToArray();
 
             var statisticsSection = new TabSection("Database", "Queries", "Total Transaction Duration");
-            var eventSection = new TabSection("Database", "Events", "Queries", "IsCommited", "Total Duration");
+            var eventSection      = new TabSection("Database", "Events", "Queries", "IsCommited", "Total Duration");
 
             // Statistics
             foreach (var transactionLifetime in transactionLifetimes.OrderBy(x => x.Offset).ToArray())
@@ -103,7 +103,7 @@ namespace Glimpse.AdoNetProfiler.Tabs
                     .ToArray();
 
                 var eventDetailSection = new TabSection("EventType", "EventName", "Duration", "Offset");
-                var duplicatedKeys = new HashSet<string>();
+                var duplicatedKeys     = new HashSet<string>();
 
                 foreach (var @event in events)
                 {

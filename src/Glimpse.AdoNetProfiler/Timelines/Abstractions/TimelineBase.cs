@@ -24,7 +24,7 @@ namespace Glimpse.AdoNetProfiler.Timelines.Abstractions
         protected void WriteTimelineMessageCore(ITimelineMessage timelineMessage)
         {
             var timerResult = _timer.Stop(_offset);
-            var message = timelineMessage
+            var message     = timelineMessage
                 .AsTimelineMessage(EventName, CategoryItem)
                 .AsTimedMessage(timerResult);
 
