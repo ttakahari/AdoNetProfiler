@@ -5,7 +5,7 @@
   },
 
   "dependencies": {
-    "AdoNetProfiler": "0.3.0"
+    "AdoNetProfiler": "0.3.1"
   },
 
   "frameworks": {

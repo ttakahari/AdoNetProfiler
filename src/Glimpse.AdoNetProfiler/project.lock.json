@@ -12,7 +12,7 @@
           "lib/net45/Glimpse.Core.dll": {}
         }
       },
-      "AdoNetProfiler/0.3.0": {
+      "AdoNetProfiler/0.3.1": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.6",
         "frameworkAssemblies": [
@@ -46,7 +46,7 @@
         "tools/uninstall.ps1"
       ]
     },
-    "AdoNetProfiler/0.3.0": {
+    "AdoNetProfiler/0.3.1": {
       "type": "project",
       "path": "../AdoNetProfiler/project.json",
       "msbuildProject": "../AdoNetProfiler/AdoNetProfiler.xproj"
@@ -55,7 +55,7 @@
   "projectFileDependencyGroups": {
     "": [],
     ".NETFramework,Version=v4.6": [
-      "AdoNetProfiler >= 0.3.0 < 0.4.0",
+      "AdoNetProfiler >= 0.3.1 < 0.4.0",
       "Glimpse >= 1.8.6"
     ]
   },

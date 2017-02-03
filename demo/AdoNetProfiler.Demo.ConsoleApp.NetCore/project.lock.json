@@ -2175,7 +2175,7 @@
           "lib/netstandard1.3/_._": {}
         }
       },
-      "AdoNetProfiler/0.3.0": {
+      "AdoNetProfiler/0.3.1": {
         "type": "project",
         "framework": ".NETStandard,Version=v1.6",
         "dependencies": {
@@ -6953,7 +6953,7 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
-    "AdoNetProfiler/0.3.0": {
+    "AdoNetProfiler/0.3.1": {
       "type": "project",
       "path": "../../src/AdoNetProfiler/project.json",
       "msbuildProject": "../../src/AdoNetProfiler/AdoNetProfiler.xproj"
@@ -6961,7 +6961,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "AdoNetProfiler >= 0.3.0",
+      "AdoNetProfiler >= 0.3.1",
       "Microsoft.NETCore.App >= 1.0.1",
       "System.Data.SqlClient >= 4.1.0"
     ],

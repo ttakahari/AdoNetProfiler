@@ -3,7 +3,7 @@
   "version": 2,
   "targets": {
     ".NETFramework,Version=v4.6": {
-      "AdoNetProfiler/0.3.0": {
+      "AdoNetProfiler/0.3.1": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.6",
         "frameworkAssemblies": [
@@ -20,7 +20,7 @@
     }
   },
   "libraries": {
-    "AdoNetProfiler/0.3.0": {
+    "AdoNetProfiler/0.3.1": {
       "type": "project",
       "path": "../../src/AdoNetProfiler/project.json",
       "msbuildProject": "../../src/AdoNetProfiler/AdoNetProfiler.xproj"
@@ -28,7 +28,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "AdoNetProfiler >= 0.3.0"
+      "AdoNetProfiler >= 0.3.1"
     ],
     ".NETFramework,Version=v4.6": [
       "System.Data >= 4.0.0"

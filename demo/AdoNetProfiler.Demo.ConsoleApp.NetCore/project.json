@@ -9,7 +9,7 @@
       "type": "platform",
       "version": "1.0.1"
     },
-    "AdoNetProfiler": "0.3.0",
+    "AdoNetProfiler": "0.3.1",
     "System.Data.SqlClient": "4.1.0"
   },
 
