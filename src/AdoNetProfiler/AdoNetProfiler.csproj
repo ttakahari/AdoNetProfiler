@@ -21,13 +21,13 @@
     </PropertyGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
-        <PackageReference Include="System.Data.Common" Version="[4.1.0,)" />
-        <PackageReference Include="System.ComponentModel" Version="[4.0.1,)" />
-        <PackageReference Include="System.Linq" Version="[4.1.0,)" />
-        <PackageReference Include="System.Reflection" Version="[4.1.0,)" />
-        <PackageReference Include="System.Reflection.TypeExtensions" Version="[4.1.0,)" />
-        <PackageReference Include="System.Runtime.InteropServices" Version="[4.1.0,)" />
-        <PackageReference Include="System.Threading" Version="[4.0.11,)" />
+        <PackageReference Include="System.ComponentModel" Version="4.3.0" />
+        <PackageReference Include="System.Data.Common" Version="4.3.0" />
+        <PackageReference Include="System.Linq" Version="4.3.0" />
+        <PackageReference Include="System.Reflection" Version="4.3.0" />
+        <PackageReference Include="System.Reflection.TypeExtensions" Version="4.4.0" />
+        <PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
+        <PackageReference Include="System.Threading" Version="4.3.0" />
     </ItemGroup>
 
     <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
@@ -35,9 +35,9 @@
     </PropertyGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
+        <Reference Include="System" />
         <Reference Include="System.Data" />
         <Reference Include="System.Xml" />
-        <Reference Include="System" />
         <Reference Include="Microsoft.CSharp" />
     </ItemGroup>
 
