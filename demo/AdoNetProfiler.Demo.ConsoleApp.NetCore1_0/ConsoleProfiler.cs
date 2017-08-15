@@ -2,7 +2,7 @@
 using System.Data.Common;
 using System.Diagnostics;
 
-namespace AdoNetProfiler.Demo.ConsoleApp.NetCore
+namespace AdoNetProfiler.Demo.ConsoleApp.NetCore1_0
 {
     public class ConsoleProfiler : IAdoNetProfiler
     {

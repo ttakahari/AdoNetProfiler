@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data.SqlClient;
 
-namespace AdoNetProfiler.Demo.ConsoleApp.NetCore
+namespace AdoNetProfiler.Demo.ConsoleApp.NetCore2_0
 {
-    public class Program
+    class Program
     {
         public static void Main(string[] args)
         {
