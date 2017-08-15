@@ -1,24 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{92781B86-EFF9-461B-BF97-50375E47C8A3}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AdoNetProfiler", "src\AdoNetProfiler\AdoNetProfiler.xproj", "{A0197ADD-20E0-42C9-98DC-EF5464F62FD0}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Glimpse.AdoNetProfiler", "src\Glimpse.AdoNetProfiler\Glimpse.AdoNetProfiler.xproj", "{0AA019FC-DD58-4744-9C7E-DC70765A8FE9}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{4080A2C2-A9DE-4A4B-9187-DE4B24CC904B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solution Items", "{8440916E-ECC3-49D7-9735-A4551BC65E39}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdoNetProfiler", "src\AdoNetProfiler\AdoNetProfiler.csproj", "{A0197ADD-20E0-42C9-98DC-EF5464F62FD0}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AdoNetProfiler.Demo.ConsoleApp.NetCore", "demo\AdoNetProfiler.Demo.ConsoleApp.NetCore\AdoNetProfiler.Demo.ConsoleApp.NetCore.xproj", "{60AA49B7-4D63-45CE-A4AE-5B4DC91BFF9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Glimpse.AdoNetProfiler", "src\Glimpse.AdoNetProfiler\Glimpse.AdoNetProfiler.csproj", "{0AA019FC-DD58-4744-9C7E-DC70765A8FE9}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AdoNetProfiler.Demo.ConsoleApp.Net46", "demo\AdoNetProfiler.Demo.ConsoleApp.Net46\AdoNetProfiler.Demo.ConsoleApp.Net46.xproj", "{3EABA800-05CE-4089-9D26-DCF6ACBB48CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdoNetProfiler.Demo.ConsoleApp.NetCore", "demo\AdoNetProfiler.Demo.ConsoleApp.NetCore\AdoNetProfiler.Demo.ConsoleApp.NetCore.csproj", "{60AA49B7-4D63-45CE-A4AE-5B4DC91BFF9A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdoNetProfiler.Demo.ConsoleApp.Net46", "demo\AdoNetProfiler.Demo.ConsoleApp.Net46\AdoNetProfiler.Demo.ConsoleApp.Net46.csproj", "{3EABA800-05CE-4089-9D26-DCF6ACBB48CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <Description>Profiler for ADO.NET with hooking DbConnection, DbCommand, DbDataReader, DbTransaction.</Description>
+        <Copyright>Copyright t.takahari 2017</Copyright>
+        <AssemblyTitle>AdoNetProfiler</AssemblyTitle>
+        <VersionPrefix>0.3.1</VersionPrefix>
+        <Authors>t.takahari</Authors>
+        <TargetFrameworks>netstandard1.6;net46</TargetFrameworks>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <AssemblyName>AdoNetProfiler</AssemblyName>
+        <PackageId>AdoNetProfiler</PackageId>
+        <PackageTags>ADO.NET</PackageTags>
+        <PackageProjectUrl>https://github.com/ttakahari/AdoNetProfiler</PackageProjectUrl>
+        <PackageLicenseUrl>http://opensource.org/licenses/MIT</PackageLicenseUrl>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/ttakahari/AdoNetProfiler</RepositoryUrl>
+        <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+        <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+        <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    </PropertyGroup>
+
+    <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
+        <PackageReference Include="System.Data.Common" Version="[4.1.0,)" />
+        <PackageReference Include="System.ComponentModel" Version="[4.0.1,)" />
+        <PackageReference Include="System.Linq" Version="[4.1.0,)" />
+        <PackageReference Include="System.Reflection" Version="[4.1.0,)" />
+        <PackageReference Include="System.Reflection.TypeExtensions" Version="[4.1.0,)" />
+        <PackageReference Include="System.Runtime.InteropServices" Version="[4.1.0,)" />
+        <PackageReference Include="System.Threading" Version="[4.0.11,)" />
+    </ItemGroup>
+
+    <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
+        <DefineConstants>$(DefineConstants);COREFX</DefineConstants>
+    </PropertyGroup>
+
+    <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
+        <Reference Include="System.Data" />
+        <Reference Include="System.Xml" />
+        <Reference Include="System" />
+        <Reference Include="Microsoft.CSharp" />
+    </ItemGroup>
+
+</Project>

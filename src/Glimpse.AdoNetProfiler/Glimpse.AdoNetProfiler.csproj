@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Glimpse profiler for ADO.NET with using AdoNetProfiler.</Description>
+    <Copyright>Copyright t.takahari 2017</Copyright>
+    <AssemblyTitle>Glimpse.AdoNetProfiler</AssemblyTitle>
+    <VersionPrefix>0.3.1</VersionPrefix>
+    <Authors>t.takahari</Authors>
+    <TargetFramework>net46</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AssemblyName>Glimpse.AdoNetProfiler</AssemblyName>
+    <PackageId>Glimpse.AdoNetProfiler</PackageId>
+    <PackageTags>ADO.NET;Glimpse</PackageTags>
+    <PackageProjectUrl>https://github.com/ttakahari/AdoNetProfiler</PackageProjectUrl>
+    <PackageLicenseUrl>http://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/ttakahari/AdoNetProfiler</RepositoryUrl>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
+    <ProjectReference Include="..\AdoNetProfiler\AdoNetProfiler.csproj" />
+    <PackageReference Include="Glimpse" Version="1.8.6" />
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+</Project>
