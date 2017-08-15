@@ -60,7 +60,7 @@ namespace AdoNetProfiler
         /// <inheritdoc cref="DbDataReader.Close()" />
         public override void Close()
         {
-            _reader?.Close();
+            _reader.Close();
         }
 #endif
 
@@ -231,12 +231,10 @@ namespace AdoNetProfiler
         {
             _profiler.OnReaderFinish(this, _records);
 
-#if NETSTANDARD1_6
             if (disposing)
             {
                 _reader.Dispose();
             }
-#endif
 
             base.Dispose(disposing);
         }
