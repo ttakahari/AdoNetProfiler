@@ -11,13 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdoNetProfiler", "src\AdoNe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Glimpse.AdoNetProfiler", "src\Glimpse.AdoNetProfiler\Glimpse.AdoNetProfiler.csproj", "{0AA019FC-DD58-4744-9C7E-DC70765A8FE9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdoNetProfiler.Demo.ConsoleApp.NetCore", "demo\AdoNetProfiler.Demo.ConsoleApp.NetCore\AdoNetProfiler.Demo.ConsoleApp.NetCore.csproj", "{60AA49B7-4D63-45CE-A4AE-5B4DC91BFF9A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdoNetProfiler.Demo.ConsoleApp.Net46", "demo\AdoNetProfiler.Demo.ConsoleApp.Net46\AdoNetProfiler.Demo.ConsoleApp.Net46.csproj", "{3EABA800-05CE-4089-9D26-DCF6ACBB48CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoNetProfiler.Demo.ConsoleApp.NetCore1_0", "demo\AdoNetProfiler.Demo.ConsoleApp.NetCore1_0\AdoNetProfiler.Demo.ConsoleApp.NetCore1_0.csproj", "{A60231B3-4DC5-4E60-9348-D3A0D0A4BB35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdoNetProfiler.Demo.ConsoleApp.NetCore1_0", "demo\AdoNetProfiler.Demo.ConsoleApp.NetCore1_0\AdoNetProfiler.Demo.ConsoleApp.NetCore1_0.csproj", "{A60231B3-4DC5-4E60-9348-D3A0D0A4BB35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoNetProfiler.Demo.ConsoleApp.NetCore2_0", "demo\AdoNetProfiler.Demo.ConsoleApp.NetCore2_0\AdoNetProfiler.Demo.ConsoleApp.NetCore2_0.csproj", "{63F1EF24-D052-4448-B1A3-86EC6B0CAF52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdoNetProfiler.Demo.ConsoleApp.NetCore2_0", "demo\AdoNetProfiler.Demo.ConsoleApp.NetCore2_0\AdoNetProfiler.Demo.ConsoleApp.NetCore2_0.csproj", "{63F1EF24-D052-4448-B1A3-86EC6B0CAF52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +31,6 @@ Global
 		{0AA019FC-DD58-4744-9C7E-DC70765A8FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AA019FC-DD58-4744-9C7E-DC70765A8FE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AA019FC-DD58-4744-9C7E-DC70765A8FE9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{60AA49B7-4D63-45CE-A4AE-5B4DC91BFF9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{60AA49B7-4D63-45CE-A4AE-5B4DC91BFF9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{60AA49B7-4D63-45CE-A4AE-5B4DC91BFF9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{60AA49B7-4D63-45CE-A4AE-5B4DC91BFF9A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3EABA800-05CE-4089-9D26-DCF6ACBB48CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3EABA800-05CE-4089-9D26-DCF6ACBB48CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EABA800-05CE-4089-9D26-DCF6ACBB48CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -56,7 +50,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{A0197ADD-20E0-42C9-98DC-EF5464F62FD0} = {92781B86-EFF9-461B-BF97-50375E47C8A3}
 		{0AA019FC-DD58-4744-9C7E-DC70765A8FE9} = {92781B86-EFF9-461B-BF97-50375E47C8A3}
-		{60AA49B7-4D63-45CE-A4AE-5B4DC91BFF9A} = {4080A2C2-A9DE-4A4B-9187-DE4B24CC904B}
 		{3EABA800-05CE-4089-9D26-DCF6ACBB48CD} = {4080A2C2-A9DE-4A4B-9187-DE4B24CC904B}
 		{A60231B3-4DC5-4E60-9348-D3A0D0A4BB35} = {4080A2C2-A9DE-4A4B-9187-DE4B24CC904B}
 		{63F1EF24-D052-4448-B1A3-86EC6B0CAF52} = {4080A2C2-A9DE-4A4B-9187-DE4B24CC904B}
