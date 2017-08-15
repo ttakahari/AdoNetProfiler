@@ -1,5 +1,5 @@
 ﻿using System;
-#if !COREFX
+#if !NETSTANDARD1_6
 using System.ComponentModel;
 #endif
 using System.Data;
@@ -10,7 +10,7 @@ namespace AdoNetProfiler
     /// <summary>
     /// The database connection wrapped <see cref="DbConnection"/>.
     /// </summary>
-#if !COREFX
+#if !NETSTANDARD1_6
     [DesignerCategory("")]
 #endif
     public class AdoNetProfilerDbConnection : DbConnection
@@ -97,7 +97,7 @@ namespace AdoNetProfiler
             Profiler.OnClosed(this);
         }
 
-#if !COREFX
+#if !NETSTANDARD1_6
         /// <inheritdoc cref="DbConnection.GetSchema()" />
         public override DataTable GetSchema()
         {
@@ -178,7 +178,7 @@ namespace AdoNetProfiler
             Profiler          = null;
 
             // corefx calls Close() in Dispose() without checking ConnectionState.
-#if !COREFX
+#if !NETSTANDARD1_6
             base.Dispose(disposing);
 #endif
         }

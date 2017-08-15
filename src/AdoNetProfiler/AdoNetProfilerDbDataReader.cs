@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-#if !COREFX
+#if !NETSTANDARD1_6
 using System.Data;
 #endif
 using System.Data.Common;
@@ -56,7 +56,7 @@ namespace AdoNetProfiler
             _profiler = profiler;
         }
 
-#if !COREFX
+#if !NETSTANDARD1_6
         /// <inheritdoc cref="DbDataReader.Close()" />
         public override void Close()
         {
@@ -172,7 +172,7 @@ namespace AdoNetProfiler
             return _reader.GetOrdinal(name);
         }
 
-#if !COREFX
+#if !NETSTANDARD1_6
         /// <inheritdoc cref="DbDataReader.GetSchemaTable()" />
         public override DataTable GetSchemaTable()
         {
@@ -231,7 +231,7 @@ namespace AdoNetProfiler
         {
             _profiler.OnReaderFinish(this, _records);
 
-#if COREFX
+#if NETSTANDARD1_6
             if (disposing)
             {
                 _reader.Dispose();
