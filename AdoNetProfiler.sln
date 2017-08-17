@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdoNetProfiler.Demo.Console
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdoNetProfiler.Demo.ConsoleApp.NetCore2_0", "demo\AdoNetProfiler.Demo.ConsoleApp.NetCore2_0\AdoNetProfiler.Demo.ConsoleApp.NetCore2_0.csproj", "{63F1EF24-D052-4448-B1A3-86EC6B0CAF52}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoNetProfiler.Demo.Web", "demo\AdoNetProfiler.Demo.Web\AdoNetProfiler.Demo.Web.csproj", "{B44BE199-AB84-447B-9186-2FB5BC1D1335}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{63F1EF24-D052-4448-B1A3-86EC6B0CAF52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63F1EF24-D052-4448-B1A3-86EC6B0CAF52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63F1EF24-D052-4448-B1A3-86EC6B0CAF52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B44BE199-AB84-447B-9186-2FB5BC1D1335}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B44BE199-AB84-447B-9186-2FB5BC1D1335}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B44BE199-AB84-447B-9186-2FB5BC1D1335}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B44BE199-AB84-447B-9186-2FB5BC1D1335}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{3EABA800-05CE-4089-9D26-DCF6ACBB48CD} = {4080A2C2-A9DE-4A4B-9187-DE4B24CC904B}
 		{A60231B3-4DC5-4E60-9348-D3A0D0A4BB35} = {4080A2C2-A9DE-4A4B-9187-DE4B24CC904B}
 		{63F1EF24-D052-4448-B1A3-86EC6B0CAF52} = {4080A2C2-A9DE-4A4B-9187-DE4B24CC904B}
+		{B44BE199-AB84-447B-9186-2FB5BC1D1335} = {4080A2C2-A9DE-4A4B-9187-DE4B24CC904B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8CCA3662-B813-443C-83B0-55D1D71FE575}
