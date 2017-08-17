@@ -29,7 +29,7 @@ namespace AdoNetProfiler.Demo.Web.Controllers
 
                     using (var reader = command.ExecuteReader())
                     {
-                        while (reader.NextResult())
+                        while (reader.Read())
                         {
                         }
                     }
