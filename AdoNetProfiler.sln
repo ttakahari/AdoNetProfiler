@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.3
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{92781B86-EFF9-461B-BF97-50375E47C8A3}"
 EndProject
@@ -18,6 +18,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdoNetProfiler.Demo.ConsoleApp.NetCore2_0", "demo\AdoNetProfiler.Demo.ConsoleApp.NetCore2_0\AdoNetProfiler.Demo.ConsoleApp.NetCore2_0.csproj", "{63F1EF24-D052-4448-B1A3-86EC6B0CAF52}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoNetProfiler.Demo.Web", "demo\AdoNetProfiler.Demo.Web\AdoNetProfiler.Demo.Web.csproj", "{B44BE199-AB84-447B-9186-2FB5BC1D1335}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{0D1977B8-79E0-4A02-AA26-2927D43FFD05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoNetProfiler.Tests", "test\AdoNetProfiler.Tests\AdoNetProfiler.Tests.csproj", "{A0CCDD97-4BF1-47F1-8E3E-97BE6F6F0D1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +53,10 @@ Global
 		{B44BE199-AB84-447B-9186-2FB5BC1D1335}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B44BE199-AB84-447B-9186-2FB5BC1D1335}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B44BE199-AB84-447B-9186-2FB5BC1D1335}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0CCDD97-4BF1-47F1-8E3E-97BE6F6F0D1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0CCDD97-4BF1-47F1-8E3E-97BE6F6F0D1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0CCDD97-4BF1-47F1-8E3E-97BE6F6F0D1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0CCDD97-4BF1-47F1-8E3E-97BE6F6F0D1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +68,7 @@ Global
 		{A60231B3-4DC5-4E60-9348-D3A0D0A4BB35} = {4080A2C2-A9DE-4A4B-9187-DE4B24CC904B}
 		{63F1EF24-D052-4448-B1A3-86EC6B0CAF52} = {4080A2C2-A9DE-4A4B-9187-DE4B24CC904B}
 		{B44BE199-AB84-447B-9186-2FB5BC1D1335} = {4080A2C2-A9DE-4A4B-9187-DE4B24CC904B}
+		{A0CCDD97-4BF1-47F1-8E3E-97BE6F6F0D1B} = {0D1977B8-79E0-4A02-AA26-2927D43FFD05}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8CCA3662-B813-443C-83B0-55D1D71FE575}
