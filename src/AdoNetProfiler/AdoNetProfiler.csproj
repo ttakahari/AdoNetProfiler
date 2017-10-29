@@ -4,7 +4,7 @@
         <Description>Profiler for ADO.NET with hooking DbConnection, DbCommand, DbDataReader, DbTransaction.</Description>
         <Copyright>Copyright t.takahari 2017</Copyright>
         <AssemblyTitle>AdoNetProfiler</AssemblyTitle>
-        <VersionPrefix>0.3.1</VersionPrefix>
+        <VersionPrefix>0.4.0</VersionPrefix>
         <Authors>t.takahari</Authors>
         <TargetFrameworks>netstandard2.0;netstandard1.6;net46</TargetFrameworks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -40,8 +40,8 @@
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
         <Reference Include="System" />
-        <Reference Include="System.Data" />
         <Reference Include="System.Core" />
+        <Reference Include="System.Data" />
     </ItemGroup>
 
     <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' OR  '$(TargetFramework)' == 'netstandard2.0'">
