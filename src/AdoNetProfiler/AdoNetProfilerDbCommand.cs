@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections;
 #if !COREFX
 using System.ComponentModel;
 #endif
 using System.Data;
 using System.Data.Common;
+using System.Linq.Expressions;
+using System.Reflection;
 
 namespace AdoNetProfiler
 {
@@ -18,6 +21,8 @@ namespace AdoNetProfiler
         private DbConnection _connection;
         private DbTransaction _transaction;
         private readonly IAdoNetProfiler _profiler;
+        private static readonly Hashtable _bindByNameGetCache = new Hashtable();
+        private static readonly Hashtable _bindByNameSetCache = new Hashtable();
 
         /// <inheritdoc cref="DbCommand.CommandText" />
         public override string CommandText
@@ -98,11 +103,33 @@ namespace AdoNetProfiler
             get { return WrappedCommand.UpdatedRowSource; }
             set { WrappedCommand.UpdatedRowSource = value; }
         }
-        
+
         /// <summary>
         /// The original <see cref="DbCommand"/>.
         /// </summary>
         public DbCommand WrappedCommand { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool BindByName
+        {
+            get
+            {
+                var cache = GetBindByNameGetAction(WrappedCommand.GetType());
+
+                return cache != null ? cache.Invoke(WrappedCommand) : false;
+            }
+            set
+            {
+                var cache = GetBindByNameSetAction(WrappedCommand.GetType());
+
+                if (cache != null)
+                {
+                    cache.Invoke(WrappedCommand, value);
+                }
+            }
+        }
 
         internal AdoNetProfilerDbCommand(DbCommand command, DbConnection connection, IAdoNetProfiler profiler)
         {
@@ -114,7 +141,7 @@ namespace AdoNetProfiler
             WrappedCommand = command;
 
             _connection = connection;
-            _profiler   = profiler;
+            _profiler = profiler;
         }
 
         /// <inheritdoc cref="DbCommand.ExecuteDbDataReader(CommandBehavior)" />
@@ -130,7 +157,7 @@ namespace AdoNetProfiler
             try
             {
                 var dbReader = WrappedCommand.ExecuteReader(behavior);
-                
+
                 return new AdoNetProfilerDbDataReader(dbReader, _profiler);
             }
             catch (Exception ex)
@@ -233,6 +260,81 @@ namespace AdoNetProfiler
             WrappedCommand = null;
 
             base.Dispose(disposing);
+        }
+
+        private Func<DbCommand, bool> GetBindByNameGetAction(Type commandType)
+        {
+            if (_bindByNameGetCache[commandType] is Func<DbCommand, bool> cache)
+            {
+                return cache;
+            }
+
+            lock (_bindByNameGetCache)
+            {
+                var property = commandType
+#if NETSTANDARD1_6
+                    .GetTypeInfo()
+#endif
+                    .GetProperty("BindByName", BindingFlags.Public | BindingFlags.Instance);
+                
+                // check for only OracleCommand
+                if (property != null
+                    && property.CanRead
+                    && property.PropertyType == typeof(bool)
+                    && property.GetIndexParameters().Length == 0
+                    && property.GetGetMethod() != null)
+                {
+                    var target = Expression.Parameter(typeof(DbCommand), "target");
+                    var prop   = Expression.PropertyOrField(Expression.Convert(target, commandType), "BindByName");
+
+                    var action = Expression.Lambda<Func<DbCommand, bool>>(Expression.Convert(prop, typeof(bool)), target).Compile();
+
+                    _bindByNameGetCache.Add(commandType, action);
+
+                    return action;
+                }
+            }
+
+            return null;
+        }
+
+        private Action<DbCommand, bool> GetBindByNameSetAction(Type commandType)
+        {
+            if (_bindByNameSetCache[commandType] is Action<DbCommand, bool> cache)
+            {
+                return cache;
+            }
+
+            lock (_bindByNameSetCache)
+            {
+                var property = commandType
+#if NETSTANDARD1_6
+                    .GetTypeInfo()
+#endif
+                    .GetProperty("BindByName", BindingFlags.Public | BindingFlags.Instance);
+                
+                // check for only OracleCommand
+                if (property != null
+                    && property.CanWrite
+                    && property.PropertyType == typeof(bool)
+                    && property.GetIndexParameters().Length == 0
+                    && property.GetSetMethod() != null)
+                {
+                    var target = Expression.Parameter(typeof(DbCommand), "target");
+                    var value  = Expression.Parameter(typeof(bool), "value");
+
+                    var left  = Expression.PropertyOrField(Expression.Convert(target, commandType), "BindByName");
+                    var right = Expression.Convert(value, left.Type);
+
+                    var action = Expression.Lambda<Action<DbCommand, bool>>(Expression.Assign(left, right), target, value).Compile();
+
+                    _bindByNameSetCache.Add(commandType, action);
+
+                    return action;
+                }
+            }
+
+            return null;
         }
     }
 }

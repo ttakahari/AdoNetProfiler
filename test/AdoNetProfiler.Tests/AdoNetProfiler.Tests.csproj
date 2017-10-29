@@ -27,10 +27,12 @@
     
     <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
         <Reference Include="System" />
+        <PackageReference Include="Oracle.ManagedDataAccess" Version="12.2.1100" />
     </ItemGroup>
     
     <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
         <Reference Include="System" />
+        <PackageReference Include="Oracle.ManagedDataAccess" Version="12.2.1100" />
     </ItemGroup>
 
     <ItemGroup>

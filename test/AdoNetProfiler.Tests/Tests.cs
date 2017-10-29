@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Data;
 using System.Data.Common;
+#if NET46 || NET461
+using Oracle.ManagedDataAccess.Client;
+#endif
 using System.Data.SqlClient;
 using System.Linq;
 using Xunit;
@@ -304,6 +307,52 @@ namespace AdoNetProfiler.Tests
                     }
                 }
             }
+        }
+
+        [Fact]
+        public void BindByName_Tests()
+        {
+            {
+                using (var connection = new TestDbConnection(new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=Northwind;Integrated Security=True"), new TestProfiler()))
+                {
+                    using (var command = connection.CreateCommand() as AdoNetProfilerDbCommand)
+                    {
+                        command.BindByName = true;
+
+                        Assert.False(command.BindByName);
+                    }
+
+                    using (var command = connection.CreateCommand() as AdoNetProfilerDbCommand)
+                    {
+                        command.BindByName = false;
+
+                        Assert.False(command.BindByName);
+                    }
+                }
+            }
+
+#if NET46 || NET461
+            {
+                using (var connection = new TestDbConnection(new OracleConnection(""), new TestProfiler()))
+                {
+                    using (var command = connection.CreateCommand() as AdoNetProfilerDbCommand)
+                    {
+                        command.BindByName = true;
+
+                        Assert.True(command.BindByName);
+                        Assert.True(((OracleCommand)command.WrappedCommand).BindByName);
+                    }
+
+                    using (var command = connection.CreateCommand() as AdoNetProfilerDbCommand)
+                    {
+                        command.BindByName = false;
+
+                        Assert.False(command.BindByName);
+                        Assert.False(((OracleCommand)command.WrappedCommand).BindByName);
+                    }
+                }
+            }
+#endif
         }
     }
 }
