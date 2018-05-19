@@ -5,7 +5,7 @@ Although threre is already <a href="">MiniProfiler</a> as similar, I make this b
 AdoNetProfiler can profile the state of ```DbConnection```, ```DbCommand``` and ```DbTransaction```.
 
 [![AppVeyor](https://img.shields.io/appveyor/ci/gruntjs/grunt.svg?style=plastic)](https://ci.appveyor.com/project/ttakahari/adonetprofiler)
-[![NuGet](https://img.shields.io/nuget/v/Nuget.Core.svg?style=plastic)](https://www.nuget.org/packages/AdoNetProfiler/)
+[![NuGet](https://img.shields.io/nuget/v/AdoNetProfiler.svg?style=plastic)](https://www.nuget.org/packages/AdoNetProfiler/)
 
 ## Install
 
