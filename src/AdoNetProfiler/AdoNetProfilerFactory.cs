@@ -1,7 +1,7 @@
 ﻿#if !COREFX
 using System;
 using System.Linq;
-using System.Reflection;
+using System.Linq.Expressions;
 using System.Threading;
 
 namespace AdoNetProfiler
@@ -12,7 +12,7 @@ namespace AdoNetProfiler
     public class AdoNetProfilerFactory
     {
         // ConstructorInfo is faster than Func<IProfiler> when invoking.
-        private static ConstructorInfo _constructor;
+        private static Func<IAdoNetProfiler> _constructor;
 
         private static bool _initialized = false;
         private static readonly ReaderWriterLockSlim _readerWriterLockSlim = new ReaderWriterLockSlim();
@@ -43,14 +43,9 @@ namespace AdoNetProfiler
                 // Overwrite DbProviderFactories.
                 Utility.InitialzeDbProviderFactory();
 
-                var constructor = profilerType.GetConstructor(Type.EmptyTypes);
+                _constructor = Expression.Lambda<Func<IAdoNetProfiler>>(Expression.New(profilerType)).Compile()
+                    ?? throw new InvalidOperationException("There is no default constructor. The profiler must have it.");
 
-                if (constructor == null)
-                {
-                    throw new InvalidOperationException("There is no default constructor. The profiler must have it.");
-                }
-
-                _constructor = constructor;
                 _initialized = true;
             });
         }
@@ -64,7 +59,7 @@ namespace AdoNetProfiler
                     throw new InvalidOperationException("This factory class has not initialized yet.");
                 }
 
-                return (IAdoNetProfiler)_constructor.Invoke(null);
+                return _constructor.Invoke();
             });
         }
     }
