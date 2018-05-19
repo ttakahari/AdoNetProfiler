@@ -15,6 +15,10 @@ namespace AdoNetProfiler
 #endif
     public class AdoNetProfilerDbConnection : DbConnection
     {
+        private readonly bool _leaveOpen;
+
+        private bool _disposed;
+
         /// <inheritdoc cref="DbConnection.ConnectionString" />
         public override string ConnectionString
         {
@@ -47,14 +51,40 @@ namespace AdoNetProfiler
         /// </summary>
         public IAdoNetProfiler Profiler { get; private set; }
 
-#if !COREFX        
+#if !COREFX
+        /// <summary>
+        /// Create a new instance of <see cref="AdoNetProfilerDbConnection" /> with recieving how to create the instance of original <see cref="DbConnection" />.
+        /// </summary>
+        /// <param name="connectionFactory">How to create the instance of original <see cref="DbConnection" />.</param>
+        public AdoNetProfilerDbConnection(Func<DbConnection> connectionFactory)
+            : this(connectionFactory, AdoNetProfilerFactory.GetProfiler())
+        {
+        }
+
         /// <summary>
         /// Create a new instance of <see cref="AdoNetProfilerDbConnection" /> with recieving the instance of original <see cref="DbConnection" />.
         /// </summary>
         /// <param name="connection">The instance of original <see cref="DbConnection" />.</param>
         public AdoNetProfilerDbConnection(DbConnection connection)
-            : this(connection, AdoNetProfilerFactory.GetProfiler()) { }
+            : this(connection, AdoNetProfilerFactory.GetProfiler())
+        {
+        }
 #endif
+
+        /// <summary>
+        /// Create a new instance of <see cref="AdoNetProfilerDbConnection" /> with recieving how to create the instance of original <see cref="DbConnection" /> and the instance of <see cref="IAdoNetProfiler"/>.
+        /// </summary>
+        /// <param name="connectionFactory">How to create the instance of original <see cref="DbConnection" />.</param>>
+        /// <param name="profiler">The instance of original <see cref="IAdoNetProfiler" />.</param>
+        public AdoNetProfilerDbConnection(Func<DbConnection> connectionFactory, IAdoNetProfiler profiler)
+        {
+            _leaveOpen = false;
+
+            WrappedConnection = connectionFactory?.Invoke() ?? throw new ArgumentNullException(nameof(connectionFactory));
+            Profiler = profiler;
+
+            WrappedConnection.StateChange += StateChangeHandler;
+        }
 
         /// <summary>
         /// Create a new instance of <see cref="AdoNetProfilerDbConnection"/> with recieving the instance of original <see cref="DbConnection" /> and the instance of <see cref="IAdoNetProfiler"/>.
@@ -62,14 +92,22 @@ namespace AdoNetProfiler
         /// <param name="connection">The instance of original <see cref="DbConnection" />.</param>
         /// <param name="profiler">The instance of original <see cref="IAdoNetProfiler" />.</param>
         public AdoNetProfilerDbConnection(DbConnection connection, IAdoNetProfiler profiler)
+            : this(connection, profiler, false)
         {
-            if (connection == null)
-            {
-                throw new ArgumentNullException(nameof(connection));
-            }
+        }
 
-            WrappedConnection = connection;
-            Profiler          = profiler;
+        /// <summary>
+        /// Create a new instance of <see cref="AdoNetProfilerDbConnection"/> with recieving the instance of original <see cref="DbConnection" />, the instance of <see cref="IAdoNetProfiler"/> an whether leave the instance of original <see cref="DbConnection"/> open or not.
+        /// </summary>
+        /// <param name="connection">The instance of original <see cref="DbConnection" />.</param>
+        /// <param name="profiler">The instance of original <see cref="IAdoNetProfiler" />.</param>
+        /// <param name="leaveOpen">Whether leave the instance of <see cref="DbConnection"/> or not.</param>
+        public AdoNetProfilerDbConnection(DbConnection connection, IAdoNetProfiler profiler, bool leaveOpen)
+        {
+            _leaveOpen = leaveOpen;
+
+            WrappedConnection = connection ?? throw new ArgumentNullException(nameof(connection));
+            Profiler = profiler;
 
             WrappedConnection.StateChange += StateChangeHandler;
         }
@@ -163,24 +201,38 @@ namespace AdoNetProfiler
         /// <param name="disposing">Wether to free, release, or resetting unmanaged resources or not.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && WrappedConnection != null)
+            if (_disposed)
             {
-                if (State != ConnectionState.Closed)
-                {
-                    Close();
-                }
-
-                WrappedConnection.StateChange -= StateChangeHandler;
-                WrappedConnection.Dispose();
+                return;
             }
 
-            WrappedConnection = null;
-            Profiler          = null;
+            if (disposing)
+            {
+                if (!_leaveOpen)
+                {
+                    if (WrappedConnection != null)
+                    {
+                        if (State != ConnectionState.Closed)
+                        {
+                            Close();
+                        }
+
+                        WrappedConnection.StateChange -= StateChangeHandler;
+                        WrappedConnection.Dispose();
+                    }
+
+                    WrappedConnection = null;
+                }
+
+                Profiler = null;
+            }
 
             // corefx calls Close() in Dispose() without checking ConnectionState.
 #if !NETSTANDARD1_6
             base.Dispose(disposing);
 #endif
+
+            _disposed = true;
         }
 
         private void StateChangeHandler(object sender, StateChangeEventArgs stateChangeEventArguments)
