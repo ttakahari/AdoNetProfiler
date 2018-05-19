@@ -5,6 +5,7 @@ Although threre is already <a href="">MiniProfiler</a> as similar, I make this b
 AdoNetProfiler can profile the state of ```DbConnection```, ```DbCommand``` and ```DbTransaction```.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/9qtd3fxwft5ucxlj?svg=true)](https://ci.appveyor.com/project/ttakahari/adonetprofiler)
+[![Releases](https://img.shields.io/github/release/ttakahari/AdoNetProfiler.svg)](https://github.com/neuecc/MessagePack-CSharp/releases)
 
 ## Install
 
@@ -165,6 +166,12 @@ public interface IAdoNetProfiler
 ```
 
 Implementing this interface, you can get your profiler.
+
+An instance of `IAdoNetProfiler` is not thread-safe. So you should not use an instance of `IAdoNetProfiler` among some instances of `DbConnection`.
+
+## Entity Framework
+
+AdoNerProfiler does not support Entity Framework. When you use AdoNetProfiler with Entity Framework in a same project, some errors may occur becouse of conflicting.
 
 ## Glimpse
 
