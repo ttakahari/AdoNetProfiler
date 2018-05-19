@@ -4,8 +4,8 @@ Profiler for ADO.NET with hooking ```DbConnection```, ```DbCommand```, ```DbData
 Although threre is already <a href="">MiniProfiler</a> as similar, I make this because I think it lacks hook points.
 AdoNetProfiler can profile the state of ```DbConnection```, ```DbCommand``` and ```DbTransaction```.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/9qtd3fxwft5ucxlj?svg=true)](https://ci.appveyor.com/project/ttakahari/adonetprofiler)
-[![Releases](https://img.shields.io/github/release/ttakahari/AdoNetProfiler.svg)](https://github.com/neuecc/MessagePack-CSharp/releases)
+[![AppVeyor](https://img.shields.io/appveyor/ci/gruntjs/grunt.svg?style=plastic)](https://ci.appveyor.com/project/ttakahari/adonetprofiler)
+[![NuGet](https://img.shields.io/nuget/v/Nuget.Core.svg?style=plastic)](https://www.nuget.org/packages/AdoNetProfiler/)
 
 ## Install
 
