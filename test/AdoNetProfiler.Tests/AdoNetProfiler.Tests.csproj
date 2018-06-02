@@ -1,10 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netcoreapp2.0;netcoreapp1.1;netcoreapp1.0;net471;net47;net462;net461;net46</TargetFrameworks>
+        <TargetFrameworks>netcoreapp2.1;netcoreapp2.0;netcoreapp1.1;netcoreapp1.0;net471;net47;net462;net461;net46</TargetFrameworks>
         <RuntimeFrameworkVersion Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">1.0.4</RuntimeFrameworkVersion>
         <RuntimeFrameworkVersion Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">1.1.0</RuntimeFrameworkVersion>
         <RuntimeFrameworkVersion Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">2.0.0</RuntimeFrameworkVersion>
+        <RuntimeFrameworkVersion Condition=" '$(TargetFramework)' == 'netcoreapp2.1' ">2.1.0</RuntimeFrameworkVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -22,6 +23,10 @@
     </ItemGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
+        <PackageReference Include="System.Data.SqlClient" Version="4.4.0" />
+    </ItemGroup>
+
+    <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.1' ">
         <PackageReference Include="System.Data.SqlClient" Version="4.4.0" />
     </ItemGroup>
     
